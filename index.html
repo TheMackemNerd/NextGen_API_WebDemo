@@ -3,6 +3,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
     <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
@@ -27,7 +30,7 @@
                         </div>
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="btn-cta"><span class="btn btn-secondary" id="username"></span></li>
                                 <li class="btn-cta"><a href="logout.html"><span>Logout</span></a></li>
                             </ul>
                         </div>
@@ -61,6 +64,7 @@
     <script src="js/jquery.flexslider-min.js"></script>
     <script src="js/main.js"></script>
 
+    <script>setUserName();</script>
     </body>
 </html>
 

@@ -1,19 +1,18 @@
 var tokenData = "";
 
+function setUserName() {
+    document.getElementById("username").innerHTML = tokenData.name;
+}
+
 function isSecure() {
     if (!secureCheck()) {
-        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=http://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback");
-    }
-    else {
-        document.getElementById("dvToken").innerHTML = JSON.stringify(tokenData);
+        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
     }
 
 }
 
 function logOut() {
-
     sessionStorage.removeItem("userKey");
-
 }
 
 function secureCheck() {
@@ -69,10 +68,15 @@ function createSession() {
 function getToken() {
 
     console.log("Getting Token");
-    const urlParams = new URLSearchParams(window.location.search);
-    var token = urlParams.get('id_token');
+    var frag = window.location.hash.substring(1);
+    var result = frag.split('&').reduce(function (result, item) {
+        var parts = item.split('=');
+        result[parts[0]] = parts[1];
+        return result;
+    }, {});
 
-    return token;
+    console.log(result);
+    return result.id_token;
 
 }
 
