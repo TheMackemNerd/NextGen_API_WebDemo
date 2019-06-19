@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{534E6249-F5AB-4564-8F23-D3F3056DFE41}"
+	ProjectSection(SolutionItems) = preProject
+		callback.html = callback.html
+		index.html = index.html
+		logout.html = logout.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{B6CA4AE8-721D-47EC-B353-8ECC21CEDF51}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\air\css\.DS_Store = ..\..\..\Downloads\air\css\.DS_Store
+		..\..\..\Downloads\air\css\animate.css = ..\..\..\Downloads\air\css\animate.css
+		..\..\..\Downloads\air\css\bootstrap.css = ..\..\..\Downloads\air\css\bootstrap.css
+		..\..\..\Downloads\air\css\bootstrap.css.map = ..\..\..\Downloads\air\css\bootstrap.css.map
+		..\..\..\Downloads\air\css\flexslider.css = ..\..\..\Downloads\air\css\flexslider.css
+		..\..\..\Downloads\air\css\icomoon.css = ..\..\..\Downloads\air\css\icomoon.css
+		..\..\..\Downloads\air\css\magnific-popup.css = ..\..\..\Downloads\air\css\magnific-popup.css
+		..\..\..\Downloads\air\css\style.css = ..\..\..\Downloads\air\css\style.css
+		..\..\..\Downloads\air\css\style.css.map = ..\..\..\Downloads\air\css\style.css.map
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{928856DC-E671-4C35-8B34-50DE963AEE2C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\air\js\bootstrap.min.js = ..\..\..\Downloads\air\js\bootstrap.min.js
+		..\..\..\Downloads\air\js\jquery.easing.1.3.js = ..\..\..\Downloads\air\js\jquery.easing.1.3.js
+		..\..\..\Downloads\air\js\jquery.flexslider-min.js = ..\..\..\Downloads\air\js\jquery.flexslider-min.js
+		..\..\..\Downloads\air\js\jquery.min.js = ..\..\..\Downloads\air\js\jquery.min.js
+		..\..\..\Downloads\air\js\jquery.waypoints.min.js = ..\..\..\Downloads\air\js\jquery.waypoints.min.js
+		..\..\..\Downloads\air\js\main.js = ..\..\..\Downloads\air\js\main.js
+		..\..\..\Downloads\air\js\modernizr-2.6.2.min.js = ..\..\..\Downloads\air\js\modernizr-2.6.2.min.js
+		..\..\..\Downloads\air\js\respond.min.js = ..\..\..\Downloads\air\js\respond.min.js
+		securecheck.js = securecheck.js
+		js\securecheck.js = js\securecheck.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{8B4BF105-FEFC-44D0-9A4C-E992AEA645A2}"
+	ProjectSection(SolutionItems) = preProject
+		images\blog-1.jpg = images\blog-1.jpg
+		images\blog-2.jpg = images\blog-2.jpg
+		images\blog-3.jpg = images\blog-3.jpg
+		images\cover_bg_1.jpg = images\cover_bg_1.jpg
+		images\portfolio-1.jpg = images\portfolio-1.jpg
+		images\portfolio-2.jpg = images\portfolio-2.jpg
+		images\portfolio-3.jpg = images\portfolio-3.jpg
+		images\portfolio-4.jpg = images\portfolio-4.jpg
+		images\portfolio-5.jpg = images\portfolio-5.jpg
+		images\portfolio-6.jpg = images\portfolio-6.jpg
+		images\user-1.jpg = images\user-1.jpg
+		images\user-2.jpg = images\user-2.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6CA4AE8-721D-47EC-B353-8ECC21CEDF51} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
+		{928856DC-E671-4C35-8B34-50DE963AEE2C} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
+		{8B4BF105-FEFC-44D0-9A4C-E992AEA645A2} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {747FCEFA-9FD0-432D-8BA0-50F3044055BA}
+	EndGlobalSection
+EndGlobal
