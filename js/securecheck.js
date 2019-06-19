@@ -2,7 +2,7 @@ var tokenData = "";
 
 function isSecure() {
     if (!secureCheck()) {
-        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=http://localhost:3000/callback");
+        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=http://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback");
     }
     else {
         document.getElementById("dvToken").innerHTML = JSON.stringify(tokenData);
