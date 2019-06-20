@@ -8,7 +8,11 @@ function isSecure() {
 }
 
 function logOut() {
+
     sessionStorage.removeItem("userKey");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("encodedtoken");
+
 }
 
 function secureCheck() {
