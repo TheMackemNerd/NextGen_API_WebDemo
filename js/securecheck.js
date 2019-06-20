@@ -25,6 +25,7 @@ function secureCheck() {
     else {
 
         var token = getToken();
+        sessionStorage.setItem("encodedtoken", token);
         if (token === null) {
             return false;
         }
@@ -132,8 +133,8 @@ function getUserRecord() {
     console.log("Preparing to call API");
     console.log("Sub: " + sub);
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users?sub=' + sub, true);
-    console.log("Authorization: " + sessionStorage.getItem("token"));
-    request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
+    console.log("Authorization: " + sessionStorage.getItem("encodedtoken"));
+    request.setRequestHeader("Authorization", sessionStorage.getItem("encodedtoken"));
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Access-Control-Allow-Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
     request.onload = function () {
@@ -142,7 +143,7 @@ function getUserRecord() {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
             console.log(err);
-            //window.location.replace("error.html?errordesc=" + encodeURI(err));
+            window.location.replace("error.html?errordesc=" + encodeURI(err));
         }
         else {
             console.log("API call Success");
