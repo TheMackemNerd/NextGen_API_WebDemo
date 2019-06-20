@@ -2,7 +2,7 @@ var tokenData = "";
 
 function setUserName() {
     // Replace with user name from the API
-    document.getElementById("username").innerHTML = sessionStorage.getItem("userKey");
+    document.getElementById("username").innerHTML = JSON.parse(sessionStorage.getItem("user")).name;
 
 }
 
