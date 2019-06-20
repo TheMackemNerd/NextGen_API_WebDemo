@@ -1,14 +1,5 @@
 var tokenData = "";
 
-function setUserName() {
-
-    console.log(sessionStorage.getItem("user"));
-    var user = sessionStorage.getItem("user");
-    var name = JSON.parse(JSON.parse(user)).name;
-    document.getElementById("username").innerHTML = name;
-
-}
-
 function isSecure() {
     if (!secureCheck()) {
         window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");

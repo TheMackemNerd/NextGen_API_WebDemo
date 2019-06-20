@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +17,11 @@
     <script src="js/modernizr-2.6.2.min.js"></script>
     <script src="js/securecheck.js"></script>
     <script src="js/banner.js"></script>
+    <script src="js/invite.js"></script>
 
+    <script>
+        doInvite();
+    </script>
     <script>
         //isSecure();
     </script>
@@ -31,7 +35,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-2">
-                            <div id="fh5co-logo"><a href="index.html"><img src="images/kf-dark.png" alt="KFP Logo"/></a></div>
+                            <div id="fh5co-logo"><a href="index.html"><img src="images/kf-dark.png" alt="KFP Logo" /></a></div>
                         </div>
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
@@ -50,33 +54,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                        <h2>Next Gen Payroll Logged-In Area</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="invite.html">Invite Users</a></p>
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?mytenant=1">Pull Data from my Tenant</a></p>
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?mytenant=0">Pull Data from a different Tenant</a></p>
+                        <h1>Invite Sent</h1>
                     </div>
                 </div>
             </div>
         </header>
     </div>
-        
 
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/main.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.flexslider-min.js"></script>
+        <script src="js/main.js"></script>
 
-    <script>
-        setUserName();
-        setTenant();
+    <script>        
+      setUserName();
+      setTenant();
     </script>
-    </body>
+
+</body>
 </html>
 

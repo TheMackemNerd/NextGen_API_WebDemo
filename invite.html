@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -31,7 +31,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-2">
-                            <div id="fh5co-logo"><a href="index.html"><img src="images/kf-dark.png" alt="KFP Logo"/></a></div>
+                            <div id="fh5co-logo"><a href="index.html"><img src="images/kf-dark.png" alt="KFP Logo" /></a></div>
                         </div>
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
@@ -49,21 +49,25 @@
         <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                        <h2>Next Gen Payroll Logged-In Area</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="invite.html">Invite Users</a></p>
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?mytenant=1">Pull Data from my Tenant</a></p>
-                        <p><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?mytenant=0">Pull Data from a different Tenant</a></p>
+                    <div class="col-md-8 col-md-offset-2 text-left fh5co-heading">
+                        <p>Enter the details of the user you want to invite:</p>
+                        <form action="invitesent.html">
+                            <p>
+                                <label for="emailaddress"><b>Email</b></label>
+                                <input type="text" name="emailaddress" placeholder="Valid Email Address" style="width:400px" />
+                                <br />
+                                <br />
+                                <label for="fullname"><b>Name</b></label>
+                                <input type="text" name="fullname" placeholder="Full Name" style="width:400px" />
+                                <br /><br />
+                                <input type="submit" class="btn-cta" />
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
         </header>
-    </div>
-        
+     </div>
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
@@ -74,9 +78,10 @@
     <script src="js/main.js"></script>
 
     <script>
-        setUserName();
-        setTenant();
+    setUserName();
+    setTenant();
     </script>
-    </body>
+
+</body>
 </html>
 

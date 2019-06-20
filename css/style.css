@@ -11,12 +11,12 @@
 *
 * ======================================================= */
 body {
-  font-family: "Inconsolata", Arial, sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1.7;
-  color: #333333;
-  background: #fff;
+    font-family: "icomoon", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333333;
+    background: #fff;
 }
 
 #page {
@@ -1320,6 +1320,7 @@ input[type="text"] {
     border: 2px solid #90d686;
 }
 
+
     .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
         background: #e14b7e !important;
         border-color: #e14b7e !important;
@@ -1335,6 +1336,24 @@ input[type="text"] {
             background: #90d686;
             color: #fff;
         }
+
+.btn-tenant {
+    background: #c6cc8a;
+    color: #fff;
+    border: 2px solid #c6cc8a;
+}
+
+    .btn-tenant.btn-outline {
+        background: transparent;
+        color: #DD356E;
+        border: 2px solid #c6cc8a;
+    }
+
+        .btn-tenant.btn-outline:hover, .btn-tenant.btn-outline:focus, .btn-tenant.btn-outline:active {
+            background: #c6cc8a;
+            color: #fff;
+        }
+
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   background: #e14b7e !important;
