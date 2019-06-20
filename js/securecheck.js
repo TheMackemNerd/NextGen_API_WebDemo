@@ -9,6 +9,7 @@ function isSecure() {
 
 function logOut() {
 
+    console.log("Clearing the Session State");
     sessionStorage.removeItem("userKey");
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("encodedtoken");
@@ -18,6 +19,7 @@ function logOut() {
 function secureCheck() {
 
     if (isInSession()) {
+        console.log("Confirmed in Session");
         return true;
     }
     else {
