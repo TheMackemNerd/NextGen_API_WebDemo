@@ -1,7 +1,36 @@
 var tokenData = "";
 
 function setUserName() {
-    document.getElementById("username").innerHTML = tokenData.name;
+    // Replace with user name from the API
+    document.getElementById("username").innerHTML = sessionStorage.getItem("userKey");
+
+}
+
+function getUserRecord() {
+
+    var request = new XMLHttpRequest();
+
+    console.log("Preparing to call API");
+    request.setRequestHeader("Authorization", session.getItem("token"));
+    request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users?sub=' + sessionStorage.getItem("userKey"), true);
+    request.onload = function () {
+
+        if (request.status != 200) {
+            console.log("The API returned an error");
+            var err = JSON.parse(this.response).description;
+            window.location.replace("error.html?errordesc=" + encodeURI(err));
+        }
+        else {
+            console.log("API call Success");
+            var data = this.response;
+            sessionStorage.setItem("user", JSON.stringify(data));
+            window.location.replace("index.html");
+        }
+
+    }
+
+    request.send();
+
 }
 
 function isSecure() {
@@ -76,7 +105,7 @@ function getToken() {
     }, {});
 
     console.log(result);
-    return result.id_token;
+    return result.access_token;
 
 }
 
