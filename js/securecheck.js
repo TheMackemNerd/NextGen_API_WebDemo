@@ -78,7 +78,7 @@ function getToken() {
     }, {});
 
     console.log(result);
-    return result.access_token;
+    return result.id_token;
 
 }
 
@@ -139,7 +139,7 @@ function getUserRecord() {
 
         if (request.status != 200) {
             console.log("The API returned an error");
-            var err = JSON.parse(this.response).description;
+            var err = JSON.parse(this.response).message;
             window.location.replace("error.html?errordesc=" + encodeURI(err));
         }
         else {
