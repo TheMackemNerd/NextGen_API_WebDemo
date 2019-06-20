@@ -4,7 +4,7 @@ function setUserName() {
 
     console.log(sessionStorage.getItem("user"));
     var user = sessionStorage.getItem("user");
-    var name = JSON.parse(user).name;
+    var name = JSON.parse(JSON.parse(user)).name;
     document.getElementById("username").innerHTML = name;
 
 }
@@ -82,7 +82,7 @@ function getToken() {
     }, {});
 
     console.log(result);
-    return result.id_token;
+    return result.access_token;
 
 }
 
