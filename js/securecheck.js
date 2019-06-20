@@ -119,15 +119,16 @@ function isTokenValid() {
 
 }
 
-function getUserRecord() {
-
-    var request = new XMLHttpRequest();
+function getUserRecord() {    
 
     var sub = sessionStorage.getItem("userKey");
+    console.log("Sub: " + sub);
 
     if (sub === null) {
         sub = JSON.parse(getToken()).sub;
     }
+    
+    var request = new XMLHttpRequest();
 
     console.log("Preparing to call API");
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users?sub=' + sub, true);
