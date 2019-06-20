@@ -122,8 +122,7 @@ function isTokenValid() {
 function getUserRecord() {    
 
     var sub = sessionStorage.getItem("userKey");
-    console.log("Sub: " + sub);
-
+    
     if (sub === null) {
         sub = JSON.parse(getToken()).sub;
     }
@@ -131,7 +130,9 @@ function getUserRecord() {
     var request = new XMLHttpRequest();
 
     console.log("Preparing to call API");
+    console.log("Sub: " + sub);
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users?sub=' + sub, true);
+    console.log("Authorization: " + sessionStorage.getItem("token"));
     request.setRequestHeader("Authorization", sessionStorage.getItem("token"));
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Access-Control-Allow-Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
@@ -140,7 +141,8 @@ function getUserRecord() {
         if (request.status != 200) {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
-            window.location.replace("error.html?errordesc=" + encodeURI(err));
+            console.log(err);
+            //window.location.replace("error.html?errordesc=" + encodeURI(err));
         }
         else {
             console.log("API call Success");
