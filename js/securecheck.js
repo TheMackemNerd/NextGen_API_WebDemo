@@ -168,3 +168,16 @@ function getCookie(name) {
     }
     return null;
 }
+
+function listCookies() {
+
+    console.log("Listing Cookies...");
+    var cookies = document.cookie;
+    var keys = cookies.split(',');
+    var arrayLength = keys.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var val = keys[i].split('=');
+        console.log("Cookie: " + i + ", Name: " + val[0] + ", Value: " + val[1]);
+    }
+    return true;
+}
