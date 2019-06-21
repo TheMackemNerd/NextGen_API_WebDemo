@@ -166,7 +166,7 @@ function getCookie(name) {
     for (var i = 0; i < arrayLength; i++) {
         var val = keys[i].split('=');
         console.log(i + ": Comparing: " + val[0] + " with " + name);
-        if (val[0] == name) {
+        if (val[0].trim() == name.trim()) {
             console.log(i + ": Match!");
             return decodeURIComponent(val[1]);
         }
