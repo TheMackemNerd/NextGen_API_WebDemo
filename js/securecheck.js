@@ -165,9 +165,12 @@ function getCookie(name) {
     var arrayLength = keys.length;
     for (var i = 0; i < arrayLength; i++) {
         var val = keys[i].split('=');
+        console.log(i + ": Comparing: " + val[0] + " with " + name);
         if (val[0] == name) {
+            console.log(i + ": Match!");
             return decodeURIComponent(val[1]);
         }
+        console.log(i + ": No Match");
     }
     return null;
 }
