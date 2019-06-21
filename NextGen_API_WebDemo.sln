@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{B6CA4AE8-721
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{928856DC-E671-4C35-8B34-50DE963AEE2C}"
 	ProjectSection(SolutionItems) = preProject
-		banner.js = banner.js
+		js\banner.js = js\banner.js
 		js\bootstrap.min.js = js\bootstrap.min.js
 		invite.js = invite.js
 		jquery.ba-bbq.min.js = jquery.ba-bbq.min.js

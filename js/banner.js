@@ -1,7 +1,7 @@
-function setUserName() {
+function setUserName() {    
 
-    console.log("Cookie: " + Cookies.get("user"));
-    if (Cookies.get("user") != null) { 
+    console.log("User Cookie: " + Cookies.get("user"));
+    if (Cookies.get("user") != undefined) { 
         var name = Cookies.get("user").name;
         document.getElementById("username").innerHTML = "User: " + name;
     }
@@ -9,8 +9,10 @@ function setUserName() {
 }
 
 function setTenant() {
-
-    var tenant = Cookies.get("user").tenant;
-    document.getElementById("tenant").innerHTML = "Tenant: " + tenant;
+    
+    if (Cookies.get("user") != undefined) {
+        var tenant = Cookies.get("user").tenant;
+        document.getElementById("tenant").innerHTML = "Tenant: " + tenant;
+    }
 
 }
