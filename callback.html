@@ -53,21 +53,33 @@
 
     <script>isSecure();</script>
     <script>
-        userCheck();
 
-        function userCheck() {
+        userCheck(userRoute);
+
+
+        // Check the User
+        function userCheck(callback) {
             try {
                 getUserRecord();
+                callback(null, true);
             }
             catch (err) {
-                console.log("An error occured: " + err);
-                window.location.replace("error.html?errordesc=" + encodeURI(err));
-                return false;
+                console.log("An error occured: " + err);                
+                callback(err);
             }
         };
 
-        window.location.replace("index.html");        
-        listCookies();
+        // Callback Function of the user Check
+        function userRoute(err, result) {
+            if (err) {
+                window.location.replace("error.html?errordesc=" + encodeURI(err));
+                return false;
+            }
+            else {
+                window.location.replace("index.html");                
+                return true;
+            }
+        }
 
     </script>
 

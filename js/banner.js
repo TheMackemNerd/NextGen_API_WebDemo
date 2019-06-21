@@ -1,8 +1,9 @@
 function setUserName() {    
 
 
+
     if (getCookie("user") != null) { 
-        var name = getCookie("user").name;
+        var name = JSON.parse(getCookie("user")).name;
         document.getElementById("username").innerHTML = "User: " + name;
     }
 
@@ -11,7 +12,7 @@ function setUserName() {
 function setTenant() {
     
     if (getCookie("user") != null) {
-        var tenant = getCookie("user").tenant;
+        var tenant = JSON.parse(getCookie("user")).tenant;
         document.getElementById("tenant").innerHTML = "Tenant: " + tenant;
     }
 
