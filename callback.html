@@ -58,16 +58,15 @@
         function userCheck() {
             try {
                 getUserRecord();
-                window.location.replace("index.html");
-                return false;
             }
             catch (err) {
                 console.log("An error occured: " + err);
-                //window.location.replace("error.html?errordesc=" + encodeURI(err));
+                window.location.replace("error.html?errordesc=" + encodeURI(err));
                 return false;
             }
         };
 
+        window.location.replace("index.html");        
         listCookies();
 
     </script>

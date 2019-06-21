@@ -62,7 +62,7 @@ function secureCheck() {
 function isInSession() {
 
     console.log("Checking Session State");
-    return (!getCookie('accesstoken') != null);
+    return (getCookie('accesstoken') != null);
 
 }
 
