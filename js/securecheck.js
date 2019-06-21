@@ -116,7 +116,10 @@ function isTokenValid(tokenData) {
 function getUserRecord() {    
 
     var sub = getCookie("sub");
-    var token = getCookie("access_token")
+    var token = getCookie("access_token");
+
+    console.log("Sub: " + sub);
+    console.log("Access Token: " + token);
 
     if (sub == null) {
         throw ("Sub Cookie is missing");
@@ -158,7 +161,7 @@ function getUserRecord() {
 function getCookie(name) {
 
     var cookies = document.cookie;
-    var keys = cookies.split(',');
+    var keys = cookies.split(';');
     var arrayLength = keys.length;
     for (var i = 0; i < arrayLength; i++) {
         var val = keys[i].split('=');
@@ -173,7 +176,7 @@ function listCookies() {
 
     console.log("Listing Cookies...");
     var cookies = document.cookie;
-    var keys = cookies.split(',');
+    var keys = cookies.split(';');
     var arrayLength = keys.length;
     for (var i = 0; i < arrayLength; i++) {
         var val = keys[i].split('=');
