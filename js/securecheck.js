@@ -12,7 +12,9 @@ function isSecure() {
 function logOut() {
 
     console.log("Clearing the Cookies");
-    document.cookie = '';
+    document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 
 }
 
@@ -60,7 +62,7 @@ function secureCheck() {
 function isInSession() {
 
     console.log("Checking Session State");
-    return (!getCookie('accesstoken') == null);
+    return (!getCookie('accesstoken') != null);
 
 }
 
