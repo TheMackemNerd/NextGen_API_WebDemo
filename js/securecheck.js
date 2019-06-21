@@ -60,14 +60,14 @@ function secureCheck() {
 function isInSession() {
 
     console.log("Checking Session State");
-    return (!getCookie('access_token') == null);
+    return (!getCookie('accesstoken') == null);
 
 }
 
 function createSession(token, sub) {
 
     console.log("Creating Session");
-    document.cookie = "access_token=" + encodeURIComponent(token);
+    document.cookie = "accesstoken=" + encodeURIComponent(token);
     document.cookie = "sub=" + encodeURIComponent(sub);
 
 }
@@ -108,7 +108,7 @@ function isTokenValid(tokenData) {
 
     console.log("Checking if Token is Valid");
     var currentTime = new Date().getTime() / 1000
-    console.log("Token Expiry: " + tokenData.exp + ", Current Time: " + currentTime + ", Difference: " + tokenData.exp - currentTime);
+    console.log("Token Expiry: " + tokenData.exp + ", Current Time: " + currentTime + ", Difference: " + (tokenData.exp - currentTime));
     return !(tokenData.exp < currentTime);    
 
 }
@@ -116,7 +116,7 @@ function isTokenValid(tokenData) {
 function getUserRecord() {    
 
     var sub = getCookie("sub");
-    var token = getCookie("access_token");
+    var token = getCookie("accesstoken");
 
     console.log("Sub: " + sub);
     console.log("Access Token: " + token);
