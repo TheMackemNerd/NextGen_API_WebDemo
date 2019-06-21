@@ -12,9 +12,7 @@ function isSecure() {
 function logOut() {
 
     console.log("Clearing the Cookies");
-    Cookies.remove('access_token');
-    Cookies.remove('sub');
-    Cookies.remove('user');
+    document.cookie = '';
 
 }
 
@@ -62,15 +60,15 @@ function secureCheck() {
 function isInSession() {
 
     console.log("Checking Session State");
-    return (!Cookies.get('access_token') == undefined);
+    return (!getCookie('access_token') == null);
 
 }
 
 function createSession(token, sub) {
 
     console.log("Creating Session");
-    Cookies.set('access_token', token, { secure: false });
-    Cookies.set('sub', sub, { secure: false });
+    document.cookie = "access_token=" + encodeURIComponent(token);
+    document.cookie = "sub=" + encodeURIComponent(sub);
 
 }
 
@@ -117,14 +115,14 @@ function isTokenValid(tokenData) {
 
 function getUserRecord() {    
 
-    var sub = Cookies.get("sub");
-    var token = Cookies.get("access_token")
+    var sub = getCookie("sub");
+    var token = getCookie("access_token")
 
-    if (sub == undefined) {
+    if (sub == null) {
         throw ("Sub Cookie is missing");
     }
 
-    if (token == undefined) {
+    if (token == null) {
         throw ("Token Cookie is missing");
     }
 
@@ -147,7 +145,7 @@ function getUserRecord() {
         else {
             console.log("API call Success");
             var data = this.response;
-            Cookies.set("user", data);
+            document.cookie = "user=" +  encodeURIComponent(data);
             return true;
         }
 
@@ -155,4 +153,18 @@ function getUserRecord() {
 
     request.send();
 
+}
+
+function getCookie(name) {
+
+    var cookies = document.cookie;
+    var keys = cookies.split(',');
+    var arrayLength = keys.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var val = keys[i].split('=');
+        if (val[0] == name) {
+            return decodeURIComponent(val[1]);
+        }
+    }
+    return null;
 }

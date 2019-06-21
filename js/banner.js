@@ -1,8 +1,8 @@
 function setUserName() {    
 
-    console.log("User Cookie: " + Cookies.get("user"));
-    if (Cookies.get("user") != undefined) { 
-        var name = Cookies.get("user").name;
+
+    if (getCookie("user") != null) { 
+        var name = getCookie("user").name;
         document.getElementById("username").innerHTML = "User: " + name;
     }
 
@@ -10,8 +10,8 @@ function setUserName() {
 
 function setTenant() {
     
-    if (Cookies.get("user") != undefined) {
-        var tenant = Cookies.get("user").tenant;
+    if (getCookie("user") != null) {
+        var tenant = getCookie("user").tenant;
         document.getElementById("tenant").innerHTML = "Tenant: " + tenant;
     }
 
