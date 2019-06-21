@@ -54,7 +54,16 @@
     <script>isSecure();</script>
     <script>
 
-        userCheck(userRoute);
+        userCheck(function (error, item) {
+            if (error) {
+                window.location.replace("error.html?errordesc=" + encodeURI(err));
+                return false;
+            }
+            else {
+                window.location.replace("index.html");
+                return true;
+            }
+        });
 
 
         // Check the User
@@ -68,18 +77,6 @@
                 callback(err);
             }
         };
-
-        // Callback Function of the user Check
-        function userRoute(err, result) {
-            if (err) {
-                window.location.replace("error.html?errordesc=" + encodeURI(err));
-                return false;
-            }
-            else {
-                window.location.replace("index.html");                
-                return true;
-            }
-        }
 
     </script>
 
