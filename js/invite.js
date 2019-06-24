@@ -9,7 +9,6 @@ function doInvite() {
     if (getCookie("user") != null) {
         console.log("User Cookie retrieved");
         var tenant = JSON.parse(getCookie("user")).tenant;
-        document.getElementById("tenant").innerHTML = "Tenant: " + tenant;
     }
     else {
         console.log("No user cookie can be found so we cannot get the tenancy");
@@ -25,7 +24,7 @@ function doInvite() {
 
     console.log("Creating API Call");
     var request = new XMLHttpRequest();
-    request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');    
+    request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');
     request.setRequestHeader("Authorization", token);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
@@ -36,7 +35,7 @@ function doInvite() {
 
         if (request.status == 200 || request.status == 201) {
             console.log("API call Success: " + JSON.stringify(request.data));
-            
+
         }
         else {
             console.log("The API returned an error");
