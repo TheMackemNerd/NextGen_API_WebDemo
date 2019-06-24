@@ -39,7 +39,7 @@ function doInvite() {
         console.log("Performing API Callback");
 
         if (request.status == 200 || request.status == 201) {
-            console.log("API call Success: " + JSON.stringify(request.data));
+            console.log("API call Success: " + request.data);
 
         }
         else {
