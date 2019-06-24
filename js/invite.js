@@ -52,6 +52,6 @@ function doInvite() {
     }
 
     console.log("Calling API");
-    request.send(data);
+    request.send(JSON.stringify(data));
 
 }
