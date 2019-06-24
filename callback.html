@@ -54,30 +54,25 @@
     <script>isSecure();</script>
     <script>
 
+        // Check if the User exists in the database
         userCheck(function (error, item) {
             if (error) {
+                // If the user doesn't exist in the DB (or there's a problem), route to the error page
                 window.location.replace("error.html?errordesc=" + encodeURI(err));
                 return false;
             }
             else {
-                window.location.replace("index.html");
+                // Everything is fine
+                // redirect to the page the user was visiting when they were auth challenged
+                var path = sessionStorage.getItem("lastPage");
+                if (path == undefined) {
+                    path = "index.html";
+                }
+                window.location.replace(path);
                 return true;
             }
-        });
-
-
-        // Check the User
-        function userCheck(callback) {
-            try {
-                getUserRecord();
-                callback(null, true);
-            }
-            catch (err) {
-                console.log("An error occured: " + err);                
-                callback(err);
-            }
-        };
-
+        }
+ cheers.
     </script>
 
 </body>

@@ -3,6 +3,7 @@
 function isSecure() {
     if (!secureCheck()) {
         console.log("Failed Secure Check");
+        sessionStorage.setItem("lastPage", window.location.pathname + window.location.search);
         window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
         return false;
     }
@@ -115,7 +116,27 @@ function isTokenValid(tokenData) {
 
 }
 
-function getUserRecord() {    
+function userCheck(callback) {
+    try {
+
+        // Call the API
+        getUserRecord(function (error, response) {
+            if (error) {
+                callback(error);
+            }
+            else {
+                callback(null, response);
+            }
+
+        });
+    }
+    catch (err) {
+        console.log("An error occured: " + err);
+        callback(err);
+    }
+}
+
+function getUserRecord(callback) {    
 
     var sub = getCookie("sub");
     var token = getCookie("accesstoken");
@@ -145,13 +166,13 @@ function getUserRecord() {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
             console.log(err);
-            throw (err);
+            callback(err)
         }
         else {
             console.log("API call Success");
             var data = this.response;
             document.cookie = "user=" +  encodeURIComponent(data);
-            return true;
+            callback(null,true)
         }
 
     }
