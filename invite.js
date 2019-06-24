@@ -19,14 +19,15 @@ function doInvite() {
 
     request.onload = function () {
 
-        if (request.status != 200) {
+        if (request.status == 200 || request.status == 201) {
+            console.log("API call Success");
+
+        }
+        else {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
             console.log(err);
             window.location.replace("error.html?errordesc=" + encodeURI(err));
-        }
-        else {
-            console.log("API call Success");            
         }
 
     }
