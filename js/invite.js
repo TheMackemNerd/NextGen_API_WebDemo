@@ -21,7 +21,11 @@ function doInvite() {
     var fullname = urlParams.get('fullname');
 
     console.log(data);
-    var data = "{ 'emailaddress': " + emailaddress + "', 'fullname' : '" + fullname + "', 'tenant':'" + tenant + "'}";
+    var data = {
+        emailaddress: emailaddress,
+        fullname: fullname,
+        tenant: tenant
+    };    
 
     console.log("Creating API Call");
     var request = new XMLHttpRequest();
