@@ -28,7 +28,7 @@ function doInvite() {
     request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');    
     request.setRequestHeader("Authorization", token);
     request.setRequestHeader("Content-Type", "application/json");
-    request.setRequestHeader("Access-Control-Allow-Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
+    request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
 
     request.onload = function () {
 
