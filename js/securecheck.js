@@ -16,6 +16,7 @@ function logOut() {
     document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "usertoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 
 }
 
@@ -28,8 +29,9 @@ function secureCheck() {
     else {
 
         console.log("We're not in a Session. Check to see if there is a Token in the URL")
-        var token = getToken();
-        
+        var token = getToken(1);
+        var usertoken = getToken(2);
+
         if (token === undefined) {
             console.log("There's no token in the URL");
             return false;
@@ -43,7 +45,7 @@ function secureCheck() {
 
                 if (isTokenValid(JWT)) {
                     console.log("Token has not expired");
-                    createSession(token, JWT.sub);
+                    createSession(token, JWT.sub, usertoken);
                     return true;
                 }
                 else {
@@ -67,20 +69,26 @@ function isInSession() {
 
 }
 
-function createSession(token, sub) {
+function createSession(token, sub, usertoken) {
 
     console.log("Creating Session");
     document.cookie = "accesstoken=" + encodeURIComponent(token);
     document.cookie = "sub=" + encodeURIComponent(sub);
+    document.cookie = "usertoken=" + encodeURIComponent(usertoken);
 
 }
 
-function getToken() {
+function getToken(tokenType) {
 
     console.log("Getting Token from URL");
     var fragments = jQuery.deparam.fragment();
     console.log(fragments);
-    return fragments.access_token;
+    if (tokenType == 1) {
+        return fragments.access_token;
+    }
+    else {
+        return fragments.id_token;
+    }
 
 }
 
@@ -191,12 +199,12 @@ function getCookie(name) {
     var arrayLength = keys.length;
     for (var i = 0; i < arrayLength; i++) {
         var val = keys[i].split('=');
-        console.log(i + ": Comparing: " + val[0] + " with " + name);
+        //console.log(i + ": Comparing: " + val[0] + " with " + name);
         if (val[0].trim() == name.trim()) {
             console.log(i + ": Match!");
             return decodeURIComponent(val[1]);
         }
-        console.log(i + ": No Match");
+        //console.log(i + ": No Match");
     }
     return null;
 }
