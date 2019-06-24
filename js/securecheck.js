@@ -119,12 +119,15 @@ function isTokenValid(tokenData) {
 function userCheck(callback) {
     try {
 
-        // Call the API
+        console.log("In the callback handler of getUserRecord");
+        
         getUserRecord(function (error, response) {
             if (error) {
+                console.log("Function returned an error");
                 callback(error);
             }
             else {
+                console.log("Function returned a success");
                 callback(null, response);
             }
 

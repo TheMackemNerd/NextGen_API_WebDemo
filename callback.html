@@ -54,14 +54,17 @@
     <script>isSecure();</script>
     <script>
 
+        console.log("Preparing for User Check");
         // Check if the User exists in the database
         userCheck(function (error, item) {
             if (error) {
+                console.log("Check is in error");
                 // If the user doesn't exist in the DB (or there's a problem), route to the error page
                 window.location.replace("error.html?errordesc=" + encodeURI(err));
                 return false;
             }
             else {
+                console.log("Check is successful");
                 // Everything is fine
                 // redirect to the page the user was visiting when they were auth challenged
                 var path = sessionStorage.getItem("lastPage");
@@ -71,8 +74,8 @@
                 window.location.replace(path);
                 return true;
             }
-        }
- cheers.
+        });
+
     </script>
 
 </body>
