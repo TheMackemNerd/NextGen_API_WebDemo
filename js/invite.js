@@ -20,14 +20,15 @@ function doInvite() {
     var emailaddress = urlParams.get('emailaddress');
     var fullname = urlParams.get('fullname');
 
-    var data = "{ 'email': " + emailaddress + "', 'name' : '" + fullname + "', 'tenant':'" + tenant + "'}";
+    console.log(data);
+    var data = "{ 'emailaddress': " + emailaddress + "', 'fullname' : '" + fullname + "', 'tenant':'" + tenant + "'}";
 
     console.log("Creating API Call");
     var request = new XMLHttpRequest();
     request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');
     request.setRequestHeader("Authorization", token);
     request.setRequestHeader("Content-Type", "application/json");
-    request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
+    //request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
 
     request.onload = function () {
 
@@ -39,7 +40,7 @@ function doInvite() {
         }
         else {
             console.log("The API returned an error");
-            var err = JSON.parse(this.response).message;
+            var err = this.response;
             console.log(err);
             window.location.replace("error.html?errordesc=" + encodeURI(err));
         }
