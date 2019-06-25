@@ -1,18 +1,10 @@
 function doData() {
 
-    doDataPull(function (error, result) {
-
-        if (error) {
-            window.location.replace("error.html?errordesc=" + encodeURI(error));
-        }
-        else {
-            document.getElementById("responseText").innerHTML = JSON.parse(result).description;
-        }
-    });
+    doDataPull();
 }
 
 
-function doDataPull(callback) {
+function doDataPull() {
 
     console.log("Retrieving Access Token");
     var token = getCookie("accesstoken");
@@ -51,12 +43,13 @@ function doDataPull(callback) {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
             console.log(err);
-            callback(err);
+            window.location.replace("error.html?errordesc=" + encodeURI(error));
         }
         else {
             console.log("API call Success");
             var data = this.response;            
-            callback(null, data);
+            document.getElementById("responseText").innerHTML = JSON.parse(data).description;
+
         }
 
     }
