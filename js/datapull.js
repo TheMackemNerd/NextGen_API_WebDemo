@@ -26,7 +26,7 @@ function doDataPull(callback) {
     }
     else {
         console.log("No user cookie can be found so we cannot get the tenancy");
-        window.location.replace("error.html?errordesc=" + encodeURI("Cannot determine your Tenant ID"));
+        callback("Cannot determine your Tenant ID");
     }
 
     console.log("Getting URL Parameters");
