@@ -43,7 +43,7 @@ function doDataPull() {
             console.log("The API returned an error");
             var err = JSON.parse(this.response).message;
             console.log(err);
-            window.location.replace("error.html?errordesc=" + encodeURI(error));
+            window.location.replace("error.html?errordesc=" + encodeURI(err));
         }
         else {
             console.log("API call Success");
