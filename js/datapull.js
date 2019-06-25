@@ -45,9 +45,9 @@ function doDataPull(callback) {
 
     console.log("Preparing to call API");
     console.log("Query Tenant: " + queryTenant);
-    //request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/tenant?id=' + queryTenant, true);
-    request.open('GET', 'https://ec2-34-244-123-54.eu-west-1.compute.amazonaws.com:3000/api/v1/tenant?id=' + queryTenant, true);
-    request.withCredentials = true;
+    request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/tenant?id=' + queryTenant,true);
+    //request.open('GET', 'https://ec2-34-244-123-54.eu-west-1.compute.amazonaws.com:3000/api/v1/tenant?id=' + queryTenant, true);
+    //request.withCredentials = true;
     request.setRequestHeader("Authorization", token);
     //request.setRequestHeader("X-USER", usertoken);
     request.setRequestHeader("Content-Type", "application/json");
