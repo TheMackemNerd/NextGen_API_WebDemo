@@ -14,8 +14,6 @@ function doData() {
 
 function doDataPull(callback) {
 
-    console.log("Entering doDataPull");
-
     console.log("Retrieving Access Token");
     var token = getCookie("accesstoken");
 
@@ -26,7 +24,7 @@ function doDataPull(callback) {
     }
     else {
         console.log("No user cookie can be found so we cannot get the tenancy");
-        callback("Cannot determine your Tenant ID");
+        throw("Cannot determine your Tenant ID");
     }
 
     console.log("Getting URL Parameters");
@@ -43,15 +41,10 @@ function doDataPull(callback) {
 
     var request = new XMLHttpRequest();
 
-    console.log("Preparing to call API");
     console.log("Query Tenant: " + queryTenant);
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/tenants?id=' + queryTenant,true);
-    //request.open('GET', 'https://ec2-34-244-123-54.eu-west-1.compute.amazonaws.com:3000/api/v1/tenant?id=' + queryTenant, true);
-    //request.withCredentials = true;
     request.setRequestHeader("Authorization", token);
-    //request.setRequestHeader("X-USER", usertoken);
     request.setRequestHeader("Content-Type", "text/plain");
-    //request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
     request.onload = function () {
 
         if (request.status != 200) {
