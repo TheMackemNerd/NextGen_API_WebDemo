@@ -18,7 +18,6 @@ function doDataPull(callback) {
 
     console.log("Retrieving Access Token");
     var token = getCookie("accesstoken");
-    var usertoken = getCookie("usertoken");
 
     console.log("Retrieving User");
     if (getCookie("user") != null) {
@@ -52,7 +51,7 @@ function doDataPull(callback) {
     request.setRequestHeader("Authorization", token);
     //request.setRequestHeader("X-USER", usertoken);
     request.setRequestHeader("Content-Type", "application/json");
-    request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
+    //request.setRequestHeader("Origin", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com");
     request.onload = function () {
 
         if (request.status != 200) {
