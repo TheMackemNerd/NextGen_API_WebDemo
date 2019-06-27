@@ -13,16 +13,18 @@ function isSecure() {
 function isInSession() {
 
     console.log("Checking Session State");
-    return (getCookie('accesstoken') != null);
+    console.log("Number of items in Local Storage: " + localStorage.length);
+    console.log("Number of items in Session Storage: " + sessionStorage.length);
+    return (getCookie("accesstoken") != null);
 
 }
 
 function logOut() {
 
     console.log("Clearing the Storage");
-    sessionStorage.removeItem("accesstoken");
-    sessionStorage.removeItem("sub");
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("accesstoken");
+    localStorage.removeItem("sub");
+    localStorage.removeItem("user");
 
     //document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     //document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
@@ -106,11 +108,11 @@ function tokenCheck() {
 function createSession(token, sub) {
 
     console.log("Creating Session");
-    sessionStorage.setItem("accesstoken", token);
-    sessionStorage.setItem("sub", sub);
+    localStorage.setItem("accesstoken", token);
+    localStorage.setItem("sub", sub);
 
-    console.log("Reading it back (Access Token): " + sessionStorage.getItem("accesstoken"));
-    console.log("Reading it back (Sub): " + sessionStorage.getItem("accesstoken"));
+    console.log("Reading it back (Access Token): " + localStorage.getItem("accesstoken"));
+    console.log("Reading it back (Sub): " + localStorage.getItem("accesstoken"));
 
     //document.cookie = "accesstoken=" + encodeURIComponent(token);
     //document.cookie = "sub=" + encodeURIComponent(sub);    
@@ -224,7 +226,7 @@ function getUserRecord(token, sub, callback) {
         else {
             console.log("API call Success");
             var data = this.response;
-            sessionStorage.setItem("user", encodeURIComponent(data));
+            localStorage.setItem("user", encodeURIComponent(data));
             //document.cookie = "user=" +  encodeURIComponent(data);
             callback(null,true)
         }
@@ -237,7 +239,7 @@ function getUserRecord(token, sub, callback) {
 
 function getCookie(name) {
 
-    return sessionStorage.getItem(name);
+    return localStorage.getItem(name);
 
     /*
     var cookies = document.cookie;
