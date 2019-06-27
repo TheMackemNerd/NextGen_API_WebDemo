@@ -109,6 +109,9 @@ function createSession(token, sub) {
     localStorage.setItem("accesstoken", token);
     localStorage.setItem("sub", sub);
 
+    console.log("Reading it back (Access Token): " + localStorage.getItem("accesstoken"));
+    console.log("Reading it back (Sub): " + localStorage.getItem("accesstoken"));
+
     //document.cookie = "accesstoken=" + encodeURIComponent(token);
     //document.cookie = "sub=" + encodeURIComponent(sub);    
 
