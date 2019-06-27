@@ -19,10 +19,14 @@ function isInSession() {
 
 function logOut() {
 
-    console.log("Clearing the Cookies");
-    document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    console.log("Clearing the Storage");
+    localStorage.removeItem("accesstoken");
+    localStorage.removeItem("sub");
+    localStorage.removeItem("user");
+
+    //document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    //document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    //document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 
 }
 
@@ -102,8 +106,11 @@ function tokenCheck() {
 function createSession(token, sub) {
 
     console.log("Creating Session");
-    document.cookie = "accesstoken=" + encodeURIComponent(token);
-    document.cookie = "sub=" + encodeURIComponent(sub);    
+    localStorage.setItem("accesstoken", token);
+    localStorage.setItem("sub", sub);
+
+    //document.cookie = "accesstoken=" + encodeURIComponent(token);
+    //document.cookie = "sub=" + encodeURIComponent(sub);    
 
 }
 
@@ -214,7 +221,8 @@ function getUserRecord(token, sub, callback) {
         else {
             console.log("API call Success");
             var data = this.response;
-            document.cookie = "user=" +  encodeURIComponent(data);
+            localStorage.setItem("user", encodeURIComponent(data));
+            //document.cookie = "user=" +  encodeURIComponent(data);
             callback(null,true)
         }
 
@@ -226,6 +234,9 @@ function getUserRecord(token, sub, callback) {
 
 function getCookie(name) {
 
+    return localStorage.getItem(name);
+
+    /*
     var cookies = document.cookie;
     var keys = cookies.split(';');
     var arrayLength = keys.length;
@@ -239,6 +250,7 @@ function getCookie(name) {
         //console.log(i + ": No Match");
     }
     return null;
+    */
 }
 
 function listCookies() {
