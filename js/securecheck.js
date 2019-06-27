@@ -23,7 +23,6 @@ function logOut() {
     document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    document.cookie = "usertoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 
 }
 
@@ -35,9 +34,7 @@ function tokenCheck() {
     }
     else {
 
-        console.log("We're not in a Session. Check to see if there is a Token in the URL")
-        //var token = getToken(1);
-        //var usertoken = getToken(2);
+        console.log("We're not in a Session. Check to see if there is a code in the URL")
         var urlParams = new URLSearchParams(window.location.search);
         var code = urlParams.get("code");
 
@@ -65,7 +62,7 @@ function tokenCheck() {
 
                         if (isTokenValid(JWT)) {
                             console.log("Token has not expired");
-                            createSession(token, JWT.sub, usertoken);
+                            createSession(localtoken, JWT.sub);
                             return true;
                         }
                         else {
@@ -87,12 +84,11 @@ function tokenCheck() {
 }
 
 
-function createSession(token, sub, usertoken) {
+function createSession(token, sub) {
 
     console.log("Creating Session");
     document.cookie = "accesstoken=" + encodeURIComponent(token);
-    document.cookie = "sub=" + encodeURIComponent(sub);
-    document.cookie = "usertoken=" + encodeURIComponent(usertoken);
+    document.cookie = "sub=" + encodeURIComponent(sub);    
 
 }
 
@@ -176,7 +172,7 @@ function exchangeCodeForToken(code, callback) {
     var details = {
         'grant_type': 'authorization_code',
         'client_id': '57vo0lcv2gq0822td26v9nhnh6',
-        'redirect_uri': 'encodeURIComponent("https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html"',
+        'redirect_uri': encodeURIComponent("https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html/"),
         code: code
     };
 
@@ -191,8 +187,8 @@ function exchangeCodeForToken(code, callback) {
     request.onload = function () {
         if (request.status != 200) {
             console.log("The API returned an error");
-            var err = JSON.parse(this.response).message;
-            console.log(err);
+            var err = JSON.parse(this.response).error;
+            console.log(this.response);
             callback(err)
         }
         else {            
