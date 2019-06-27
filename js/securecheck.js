@@ -172,12 +172,22 @@ function exchangeCodeForToken(code, callback) {
     request.open('POST', 'https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/token');    
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    var formBody = new FormData();
-    formBody.set("grant_type", "authorization_code");
-    formBody.set("client_id", "57vo0lcv2gq0822td26v9nhnh6");
-    formBody.set("redirect_uri", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
-    formBody.set("code", code);
-    
+
+    var details = {
+        'grant_type': 'authorization_code',
+        'client_id': '57vo0lcv2gq0822td26v9nhnh6',
+        'redirect_uri': 'encodeURIComponent("https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html"',
+        code: code
+    };
+
+    var formBody = [];
+    for (var property in details) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+        
     request.onload = function () {
         if (request.status != 200) {
             console.log("The API returned an error");
