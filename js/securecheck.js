@@ -16,6 +16,30 @@ async function isSecure() {
         window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html&state=" + encodeURIComponent(state) + "&code_challenge_method=S256&code_challenge=" + encodeURIComponent(challenge));
         return false;
     }
+    else {
+        console.log("Session Exists. Checking if the Access Token has expired");
+
+        var expiry = JSON.parse(decodeToken(getCookie("accesstoken"))).exp;
+        console.log("Expiry: " + expiry);
+        var currentTime = new Date().getTime() / 1000;
+        console.log("Current Time: " + currentTime);
+        if (exp < currentTime) {
+
+            console.log("Access Token has Expired. Refreshing...");
+            refreshTokens(function (error, result) {
+                if (error) {
+                    console.log("Something went wrong refreshing the Access Token");
+                    // do something
+                }
+                else {
+                    console.log("Restoring Access Token with new version")
+                    localStorage.setItem("accesstoken", JSON.parse(result).access_token);
+                }
+            })
+        }
+
+
+    }
 
 }
 
@@ -24,6 +48,8 @@ function isInSession() {
     console.log("Checking Session State");
     console.log("Number of items in Local Storage: " + localStorage.length);
     console.log("Number of items in Session Storage: " + sessionStorage.length);
+
+
     return (getCookie("accesstoken") != null);
 
 }
@@ -101,6 +127,7 @@ function tokenCheck(callback) {
                 else {
 
                     var localtoken = JSON.parse(result).access_token;
+                    var refreshtoken = JSON.parse(result).refresh_token;
                     console.log("There is a token in the response: " + localtoken);
                     var JWT = decodeToken(localtoken);
 
@@ -110,7 +137,7 @@ function tokenCheck(callback) {
 
                         if (isTokenValid(JWT)) {
                             console.log("Token has not expired");
-                            createSession(localtoken, JWT.sub);
+                            createSession(localtoken, JWT.sub, refreshtoken);
 
                            
                             console.log("Getting the User Record");
@@ -146,18 +173,13 @@ function tokenCheck(callback) {
 }
 
 
-function createSession(token, sub) {
+function createSession(token, sub, refresh) {
 
     console.log("Creating Session");
     localStorage.setItem("accesstoken", token);
     localStorage.setItem("sub", sub);
-
-    console.log("Reading it back (Access Token): " + localStorage.getItem("accesstoken"));
-    console.log("Reading it back (Sub): " + localStorage.getItem("accesstoken"));
-
-    //document.cookie = "accesstoken=" + encodeURIComponent(token);
-    //document.cookie = "sub=" + encodeURIComponent(sub);    
-
+    localStorage.setItem("refreshtoken", refresh);
+  
 }
 
 function getToken(tokenType) {
@@ -203,6 +225,48 @@ function isTokenValid(tokenData) {
     var currentTime = new Date().getTime() / 1000
     console.log("Token Expiry: " + tokenData.exp + ", Current Time: " + currentTime + ", Difference: " + (tokenData.exp - currentTime));
     return !(tokenData.exp < currentTime);    
+
+}
+
+function refreshTokens(callback) {
+
+    var request = new XMLHttpRequest();
+
+    request.open('POST', 'https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/token');
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    var refresh = getCookie("refreshtoken");
+
+    var details = {
+        'grant_type': 'refresh_token',
+        'client_id': '57vo0lcv2gq0822td26v9nhnh6',
+        'refresh_token': refresh
+    };
+
+    var formBody = [];
+    for (var property in details) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
+    request.onload = function () {
+        if (request.status != 200) {
+            console.log("The API returned an error");
+            var err = JSON.parse(this.response).error;
+            console.log(this.response);
+            callback(err)
+        }
+        else {
+            var data = this.response;
+            console.log("API call Success: " + data);
+            callback(null, data)
+        }
+    }
+
+    request.send(formBody);
+}
 
 }
 
