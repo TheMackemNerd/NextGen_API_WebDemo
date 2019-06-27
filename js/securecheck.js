@@ -32,11 +32,11 @@ function logOut() {
 
 }
 
-function tokenCheck() {
+function tokenCheck(callback) {
 
     if (isInSession()) {
         console.log("We are in a Session");
-        return true;
+        callback(null, true);        
     }
     else {
 
@@ -47,14 +47,14 @@ function tokenCheck() {
 
         if (code === undefined) {
             console.log("There's no authorization code in the URL");
-            return false;
+            callback("There's no authorization code in the URL", false);
         }
         else {
 
             exchangeCodeForToken(code, function (error, result) {
                 if (error) {
                     // do something
-                    return false;
+                    callback("Couldn't exchange code for token", false);
                 }
                 else {
 
@@ -75,26 +75,25 @@ function tokenCheck() {
                             getUserRecord(localtoken, JWT.sub, function (error, response) {
                                 if (error) {
                                     console.log("Function returned an error");
-                                    return false;
+                                    callback("Error getting user record", false);
                                 }
                                 else {
                                     console.log("Function returned a success");
-                                    return true;
+                                    callback(null, true);
                                 }
 
                             });
                             
-                            return true;
                         }
                         else {
                             console.log("Token has expired");
-                            return false;
+                            callback("Token has expired", false);
                         }
 
                     }
                     else {
                         console.log("Token is not a valid JWT");
-                        return false;
+                        callback("Token is not a valid JWT", false);
                     }
 
                 }

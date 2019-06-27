@@ -53,23 +53,21 @@
     
     <script>
 
-
-    if (tokenCheck()) {
-        console.log("Check is in error");
-        // If the user doesn't exist in the DB (or there's a problem), route to the error page
-        window.location.replace("error.html?errordesc=" + encodeURI("Trouble logging you on"));
-    }
-    else {
-        console.log("Check is successful");
-        // Everything is fine
-        // redirect to the page the user was visiting when they were auth challenged
-        var path = sessionStorage.getItem("lastPage");
-        if (path == undefined) {
-            path = "index.html";
-        }
-        window.location.replace(path);
-    }
-
+        tokenCheck(function (error, result) {
+            if (error) {
+                console.log("Check is in error");
+                window.location.replace("error.html?errordesc=" + error);
+            }
+            else {
+                console.log("Check is successful");
+                // Everything is fine
+                // redirect to the page the user was visiting when they were auth challenged
+                var path = sessionStorage.getItem("lastPage");
+                if (path == undefined) {
+                    path = "index.html";
+                }
+                window.location.replace(path);
+            }
 
     </script>
 
