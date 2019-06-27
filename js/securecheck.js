@@ -1,6 +1,6 @@
 
 
-function isLoggedIn() {
+function isSecure() {
     if (!isInSession()) {
         console.log("Failed Login Check");
         sessionStorage.setItem("lastPage", window.location.pathname + window.location.search);
@@ -126,8 +126,8 @@ function decodeToken(token) {
 
         return tokenData;
 
-    } catch (err) {
-        console.log("Token Parsing failed: " + err);
+    } catch (error) {
+        console.log("Token Parsing failed: " + error);
         return null;
     }
 
@@ -159,9 +159,9 @@ function userCheck(callback) {
 
         });
     }
-    catch (err) {
-        console.log("An error occured: " + err);
-        callback(err);
+    catch (error) {
+        console.log("An error occured: " + error);
+        callback(error);
     }
 }
 
@@ -171,12 +171,13 @@ function exchangeCodeForToken(code, callback) {
 
     request.open('POST', 'https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/token');    
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data = {
-        grant_type: "authorization_code",
-        client_id: "57vo0lcv2gq0822td26v9nhnh6",
-        redirect_uri: "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html",
-        code: code
-    }
+
+    var formBody = new FormData();
+    formBody.set("grant_type", "authorization_code");
+    formBody.set("client_id", "57vo0lcv2gq0822td26v9nhnh6");
+    formBody.set("redirect_uri", "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
+    formBody.set("code", code);
+    
     request.onload = function () {
         if (request.status != 200) {
             console.log("The API returned an error");
@@ -191,7 +192,7 @@ function exchangeCodeForToken(code, callback) {
         }
     }
 
-    request.send(data);
+    request.send(formBody);
 }
 
 function getUserRecord(callback) {    
