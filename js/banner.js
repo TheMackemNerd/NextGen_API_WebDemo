@@ -1,7 +1,5 @@
 function setUserName() {    
 
-
-
     if (getCookie("user") != null) { 
         var name = JSON.parse(getCookie("user")).name;
         document.getElementById("username").innerHTML = "User: " + name;

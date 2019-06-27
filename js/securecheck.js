@@ -1,6 +1,6 @@
 
 
-function isSecure() {
+async function isSecure() {
     if (!isInSession()) {
 
         console.log("Failed Login Check, redirecting to Identity Provider");
@@ -13,7 +13,7 @@ function isSecure() {
         sessionStorage.setItem("validator", validator);
         var challenge = await createPKCEChallenge(validator);
 
-        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html&State=" + encodeURIComponent(state) + "&code_challenge_method=S256&code_challenge=" + encodeURIComponent(challenge));
+        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html&state=" + encodeURIComponent(state) + "&code_challenge_method=S256&code_challenge=" + encodeURIComponent(challenge));
         return false;
     }
 
@@ -35,7 +35,7 @@ function logOut() {
     localStorage.removeItem("sub");
     localStorage.removeItem("user");
     console.log("Redirecting to Logout");
-    window.location.replace('https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/logout?client_id=57vo0lcv2gq0822td26v9nhnh6&logout_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/loggedout.html');
+    window.location.replace('https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/logout?client_id=57vo0lcv2gq0822td26v9nhnh6&logout_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/loggedout.html');
 }
 
 function generateOpaqueString(length) {
@@ -268,7 +268,7 @@ function getUserRecord(token, sub, callback) {
         else {
             console.log("API call Success");
             var data = this.response;
-            localStorage.setItem("user", encodeURIComponent(data));
+            localStorage.setItem("user", data);
             //document.cookie = "user=" +  encodeURIComponent(data);
             callback(null,true)
         }
