@@ -36,45 +36,56 @@ function tokenCheck() {
     else {
 
         console.log("We're not in a Session. Check to see if there is a Token in the URL")
-        var token = getToken(1);
-        var usertoken = getToken(2);
+        //var token = getToken(1);
+        //var usertoken = getToken(2);
+        var urlParams = new URLSearchParams(window.location.search);
+        var code = urlParams.get("code");
 
-        if (token === undefined) {
-            console.log("There's no token in the URL");
+
+        if (code === undefined) {
+            console.log("There's no authorization code in the URL");
             return false;
         }
         else {
-            console.log("There is a token in the URL. Decode it to check if it is valid.");
-            var JWT = decodeToken(token);
-            if (JWT != null) {
 
-                console.log("Token is a valid JWT");
-
-                if (isTokenValid(JWT)) {
-                    console.log("Token has not expired");
-                    createSession(token, JWT.sub, usertoken);
-                    return true;
-                }
-                else {
-                    console.log("Token has expired");
+            exchangeCodeForToken(code, function (error, result) {
+                if (error) {
+                    // do something
                     return false;
                 }
+                else {
 
-            }
-            else {
-                console.log("Token is not a valid JWT");
-                return false;
-            }
+                    var localtoken = JSON.parse(result).access_token;
+                    console.log("There is a token in the response: " + localtoken);
+                    var JWT = decodeToken(localtoken);
+
+                    if (JWT != null) {
+
+                        console.log("Token is a valid JWT");
+
+                        if (isTokenValid(JWT)) {
+                            console.log("Token has not expired");
+                            createSession(token, JWT.sub, usertoken);
+                            return true;
+                        }
+                        else {
+                            console.log("Token has expired");
+                            return false;
+                        }
+
+                    }
+                    else {
+                        console.log("Token is not a valid JWT");
+                        return false;
+                    }
+
+                }
+
+            })
         }
     }
 }
 
-function isInSession() {
-
-    console.log("Checking Session State");
-    return (getCookie('accesstoken') != null);
-
-}
 
 function createSession(token, sub, usertoken) {
 
@@ -152,6 +163,35 @@ function userCheck(callback) {
         console.log("An error occured: " + err);
         callback(err);
     }
+}
+
+function exchangeCodeForToken(code, callback) {
+
+    var request = new XMLHttpRequest();
+
+    request.open('POST', 'https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/token');    
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var data = {
+        grant_type: "authorization_code",
+        client_id: "57vo0lcv2gq0822td26v9nhnh6",
+        redirect_uri: "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html",
+        code: code
+    }
+    request.onload = function () {
+        if (request.status != 200) {
+            console.log("The API returned an error");
+            var err = JSON.parse(this.response).message;
+            console.log(err);
+            callback(err)
+        }
+        else {            
+            var data = this.response;
+            console.log("API call Success: " + JSON.stringify(data));
+            callback(null, data)
+        }
+    }
+
+    request.send(data);
 }
 
 function getUserRecord(callback) {    
