@@ -63,6 +63,21 @@ function tokenCheck() {
                         if (isTokenValid(JWT)) {
                             console.log("Token has not expired");
                             createSession(localtoken, JWT.sub);
+
+                           
+                            console.log("Getting the User Record");
+                            getUserRecord(localtoken, JWT.sub, function (error, response) {
+                                if (error) {
+                                    console.log("Function returned an error");
+                                    return false;
+                                }
+                                else {
+                                    console.log("Function returned a success");
+                                    return true;
+                                }
+
+                            });
+                            
                             return true;
                         }
                         else {
@@ -138,29 +153,6 @@ function isTokenValid(tokenData) {
 
 }
 
-function userCheck(callback) {
-    try {
-
-        console.log("In the callback handler of getUserRecord");
-        
-        getUserRecord(function (error, response) {
-            if (error) {
-                console.log("Function returned an error");
-                callback(error);
-            }
-            else {
-                console.log("Function returned a success");
-                callback(null, response);
-            }
-
-        });
-    }
-    catch (error) {
-        console.log("An error occured: " + error);
-        callback(error);
-    }
-}
-
 function exchangeCodeForToken(code, callback) {
 
     var request = new XMLHttpRequest();
@@ -172,7 +164,7 @@ function exchangeCodeForToken(code, callback) {
     var details = {
         'grant_type': 'authorization_code',
         'client_id': '57vo0lcv2gq0822td26v9nhnh6',
-        'redirect_uri': encodeURIComponent("https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html/"),
+        'redirect_uri': 'https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html',
         code: code
     };
 
@@ -201,21 +193,7 @@ function exchangeCodeForToken(code, callback) {
     request.send(formBody);
 }
 
-function getUserRecord(callback) {    
-
-    var sub = getCookie("sub");
-    var token = getCookie("accesstoken");
-
-    console.log("Sub: " + sub);
-    console.log("Access Token: " + token);
-
-    if (sub == null) {
-        throw ("Sub Cookie is missing");
-    }
-
-    if (token == null) {
-        throw ("Token Cookie is missing");
-    }
+function getUserRecord(token, sub, callback) {    
 
     var request = new XMLHttpRequest();
 
