@@ -51,7 +51,7 @@
         </header>
     </div>
 
-    <script>isSecure();</script>
+    <script>secureCheck();</script>
     <script>
 
         console.log("Preparing for User Check");
@@ -71,7 +71,7 @@
                 if (path == undefined) {
                     path = "index.html";
                 }
-                window.location.replace(path);
+                //window.location.replace(path);
                 return true;
             }
         });

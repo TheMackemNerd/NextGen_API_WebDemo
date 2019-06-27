@@ -1,12 +1,19 @@
 
 
-function isSecure() {
-    if (!secureCheck()) {
-        console.log("Failed Secure Check");
+function isLoggedIn() {
+    if (!isInSession()) {
+        console.log("Failed Login Check");
         sessionStorage.setItem("lastPage", window.location.pathname + window.location.search);
-        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
+        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
         return false;
     }
+
+}
+
+function isInSession() {
+
+    console.log("Checking Session State");
+    return (getCookie('accesstoken') != null);
 
 }
 
@@ -20,7 +27,7 @@ function logOut() {
 
 }
 
-function secureCheck() {
+function tokenCheck() {
 
     if (isInSession()) {
         console.log("We are in a Session");
