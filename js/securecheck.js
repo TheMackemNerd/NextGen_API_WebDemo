@@ -2,9 +2,18 @@
 
 function isSecure() {
     if (!isInSession()) {
-        console.log("Failed Login Check");
+
+        console.log("Failed Login Check, redirecting to Identity Provider");
         sessionStorage.setItem("lastPage", window.location.pathname + window.location.search);
-        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html");
+
+        var state = generateOpaqueString(30);
+        sessionStorage.setItem("state", state);
+
+        var validator = generateOpaqueString(50);
+        sessionStorage.setItem("validator", validator);
+        var challenge = await createPKCEChallenge(validator);
+
+        window.location.replace("https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/authorize?response_type=code&client_id=57vo0lcv2gq0822td26v9nhnh6&redirect_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html&State=" + encodeURIComponent(state) + "&code_challenge_method=S256&code_challenge=" + encodeURIComponent(challenge));
         return false;
     }
 
@@ -25,11 +34,34 @@ function logOut() {
     localStorage.removeItem("accesstoken");
     localStorage.removeItem("sub");
     localStorage.removeItem("user");
+    console.log("Redirecting to Logout");
+    window.location.replace('https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com/oauth2/logout?client_id=57vo0lcv2gq0822td26v9nhnh6&logout_uri=https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/loggedout.html');
+}
 
-    //document.cookie = "accesstoken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    //document.cookie = "sub= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    //document.cookie = "user= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+function generateOpaqueString(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
+function sha256(plain) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(plain);
+    return window.crypto.subtle.digest('SHA-256', data);
+}
+
+function base64urlencode(str) {
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+async function createPKCEChallenge(validator) {
+    var hashed = await sha256(validator);
+    return base64urlencode(hashed);
 }
 
 function tokenCheck(callback) {
@@ -43,17 +75,27 @@ function tokenCheck(callback) {
         console.log("We're not in a Session. Check to see if there is a code in the URL")
         var urlParams = new URLSearchParams(window.location.search);
         var code = urlParams.get("code");
-
+        var state = urlParams.get("state");
 
         if (code === undefined) {
             console.log("There's no authorization code in the URL");
             callback("There's no authorization code in the URL", false);
         }
+
+        if (state === undefined) {
+            console.log("There's no state in the URL");
+            callback("There's no state in the URL", false);
+        }
+
+        if (state != sessionStorage.getItem("state")) {
+            console.log("The state response does not match");
+            callback("The state response does not match", false);
+        }
+
         else {
 
             exchangeCodeForToken(code, function (error, result) {
                 if (error) {
-                    // do something
                     callback("Couldn't exchange code for token", false);
                 }
                 else {
@@ -176,7 +218,8 @@ function exchangeCodeForToken(code, callback) {
         'grant_type': 'authorization_code',
         'client_id': '57vo0lcv2gq0822td26v9nhnh6',
         'redirect_uri': 'https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html',
-        code: code
+        code: code,
+        code_verifier: sessionStorage.getItem("validator")
     };
 
     var formBody = [];
@@ -240,21 +283,6 @@ function getCookie(name) {
 
     return localStorage.getItem(name);
 
-    /*
-    var cookies = document.cookie;
-    var keys = cookies.split(';');
-    var arrayLength = keys.length;
-    for (var i = 0; i < arrayLength; i++) {
-        var val = keys[i].split('=');
-        //console.log(i + ": Comparing: " + val[0] + " with " + name);
-        if (val[0].trim() == name.trim()) {
-            console.log(i + ": Match!");
-            return decodeURIComponent(val[1]);
-        }
-        //console.log(i + ": No Match");
-    }
-    return null;
-    */
 }
 
 function listCookies() {

@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		index.html = index.html
 		invite.html = invite.html
 		invitesent.html = invitesent.html
+		loggedout.html = loggedout.html
 		logout.html = logout.html
 	EndProjectSection
 EndProject

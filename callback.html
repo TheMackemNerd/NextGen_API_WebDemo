@@ -59,8 +59,12 @@
                 window.location.replace("error.html?errordesc=" + error);
             }
             else {
-                console.log("Check is successful");
                 // Everything is fine
+                console.log("Check is successful");
+
+                // Replace the history entry to remove the auth code from the browser address bar
+                window.history.replaceState({}, null, "/");
+
                 // redirect to the page the user was visiting when they were auth challenged
                 var path = sessionStorage.getItem("lastPage");
                 if (path == undefined) {
@@ -68,6 +72,7 @@
                 }
                 window.location.replace(path);
             }
+        });
 
     </script>
 
