@@ -42,6 +42,7 @@ function doInvite() {
         var request = new XMLHttpRequest();
         request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');
         request.setRequestHeader("Authorization", token);
+        request.setRequestHeader("x-api-key", apiKey);
         request.setRequestHeader("Content-Type", "application/json");
 
         request.onload = function () {
