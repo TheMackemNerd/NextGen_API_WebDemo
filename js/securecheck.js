@@ -3,6 +3,7 @@
  */
 
 const clientId = "57vo0lcv2gq0822td26v9nhnh6";
+const apiKey = "A1HHVth5O34G649izzSy46z5Haja5pZ39SV1A2j7";
 const redirectUri = "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html";
 const logoutUri = "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/loggedout.html";
 const identityProvider = "https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com";
@@ -408,6 +409,7 @@ function getUserRecord(token, sub, callback) {
         console.log("Sub: " + sub);
         request.open('GET', apiGateway + '/poc/users?sub=' + sub, true);
         request.setRequestHeader("Authorization", token);
+        request.setRequestHeader("x-api-key", apiKey);
         request.setRequestHeader("Content-Type", "application/json");
         request.onload = function () {
 
