@@ -43,7 +43,7 @@
     <script>
 
         try {
-            tokenCheck(function (error, result) {
+            AuthCodeCheck(function (error, result) {
                 if (error) {
                     console.log("Check is in error");
                     window.location.replace("error.html?errordesc=" + error);
