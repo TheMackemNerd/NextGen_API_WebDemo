@@ -23,7 +23,6 @@ async function isSecure() {
             // ACCESS TOKEN DOES NOT EXIST
 
             console.log("Failed Login Check, redirecting to Identity Provider");
-            return false;
 
             // Record the page the user is visiting (for later redirect)
             sessionStorage.setItem("lastPage", window.location.pathname + window.location.search);
@@ -69,12 +68,12 @@ async function isSecure() {
                         throw error;
                     }
                     else {
-                        console.log("Restoring Access Token with new version")
+                        console.log("Restoring Access Token with new version");
 
                         // Swap the Access Token from the payload with the expired token in Local Storage
                         localStorage.setItem("accesstoken", JSON.parse(result).access_token);
                     }
-                })
+                });
             }
         }
     }
@@ -132,21 +131,20 @@ function refreshTokens(callback) {
                 console.log("The API returned an error");
                 var err = JSON.parse(this.response).error;
                 console.log(this.response);
-                callback(err)
+                callback(err);
             }
             else {
                 var data = this.response;
                 console.log("API call Success: " + data);
-                callback(null, data)
+                callback(null, data);
             }
-        }
+        };
 
         request.send(formBody);
     }
     catch (e) {
         console.log("Refresh Tokens failed: " + e);
         callback(e);
-        break;
     }
 
 }
@@ -164,7 +162,6 @@ function logOut() {
     catch (e) {
         console.log("Error in Log Out check: " + e);
         window.location.replace("error.html?errodesc=" + encodeURIComponent(e));
-        break;
     }
 
 }
@@ -238,7 +235,7 @@ function AuthCodeCheck(callback) {
     try {
 
         // The Identity Provider will issues a code and it will echo back the State we sent in the /authorize
-        console.log("Check to see if there is a code in the URL")
+        console.log("Check to see if there is a code in the URL");
         var urlParams = new URLSearchParams(window.location.search);
         var code = urlParams.get("code");
         var state = urlParams.get("state");
@@ -302,7 +299,7 @@ function AuthCodeCheck(callback) {
 
                 }
 
-            })
+            });
         }
     }
     catch (e) {
@@ -384,21 +381,20 @@ function exchangeCodeForToken(code, callback) {
                 console.log("The API returned an error");
                 var err = JSON.parse(this.response).error;
                 console.log(this.response);
-                callback(err)
+                callback(err);
             }
             else {
                 var data = this.response;
                 console.log("API call Success: " + JSON.stringify(data));
-                callback(null, data)
+                callback(null, data);
             }
-        }
+        };
 
         request.send(formBody);
     }
     catch (e) {
         console.log("Exchange Code for Token failed: " + e);
         callback(e);
-        break;
     }
 }
 
@@ -419,22 +415,21 @@ function getUserRecord(token, sub, callback) {
                 console.log("The API returned an error");
                 var err = JSON.parse(this.response).message;
                 console.log(err);
-                callback(err)
+                callback(err);
             }
             else {
                 console.log("API call Success");
                 var data = this.response;
-                callback(null, data)
-            }
+                callback(null, data);
+            };
 
-        }
+        };
 
         request.send();
     }
     catch (e) {
         console.log("Get User Record failed: " + e);
         callback(e);
-        break;
     }
 
 }

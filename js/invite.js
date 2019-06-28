@@ -25,9 +25,9 @@ function doInvite() {
         // Retrieve the user values from the form
         console.log("Getting URL Parameters");
         var urlParams = new URLSearchParams(window.location.search);
-        var emailaddress = urlParams.get('emailaddress');
-        var fullname = urlParams.get('fullname');
-        var phone = urlParams.get('phone');
+        var emailaddress = sanitarize(urlParams.get('emailaddress'));
+        var fullname = sanitarize(urlParams.get('fullname'));
+        var phone = sanitarize(urlParams.get('phone'));
 
         console.log(data);
         var data = {
@@ -69,6 +69,23 @@ function doInvite() {
         throw e;
     }
 
+}
 
+function sanitarize(string) {
 
+    if (string == undefined) {
+        return "";
+    }
+    else {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;',
+            "/": '&#x2F;',
+        };
+        const reg = /[&<>"'/]/ig;
+        return string.replace(reg, (match) => (map[match]));
+    }
 }
