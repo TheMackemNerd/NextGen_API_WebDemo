@@ -32,7 +32,8 @@
                         </div>
                         <div class="col-xs-10 text-right menu-1">
                             <ul>
-                                <li class="btn-cta"><a href="index.html"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="index.html"><span>Home</span></a></li>
+                                <li class="btn-cta"><a href="logout.html"><span>Logout</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,8 +62,14 @@
 
 
     <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        document.getElementById("errormsg").innerHTML = decodeURI(urlParams.get("errordesc"));
+        try {
+            var urlParams = new URLSearchParams(window.location.search);
+            document.getElementById("errormsg").innerHTML = decodeURI(urlParams.get("errordesc"));
+        }
+        catch (e) {
+            document.getElementById("errormsg").innerHTML = "Trouble displaying the error because: " + e;
+        }
+
     </script>
 
 </body>
