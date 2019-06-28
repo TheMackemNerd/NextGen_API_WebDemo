@@ -281,7 +281,7 @@ function AuthCodeCheck(callback) {
                         getUserRecord(localtoken, JWT.sub, function (error, response) {
                             if (error) {
                                 console.log("Function returned an error");
-                                callback("Error getting user record", false);
+                                callback(error, false);
                             }
                             else {
                                 // Everything is OK; store the values
