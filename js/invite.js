@@ -19,12 +19,14 @@ function doInvite() {
     var urlParams = new URLSearchParams(window.location.search);
     var emailaddress = urlParams.get('emailaddress');
     var fullname = urlParams.get('fullname');
+    var phone = urlParams.get('phone');
 
     console.log(data);
     var data = {
         emailaddress: emailaddress,
         fullname: fullname,
-        tenant: tenant
+        tenant: tenant,
+        phone: phone
     };    
 
     console.log("Creating API Call");

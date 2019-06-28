@@ -19,11 +19,11 @@ async function isSecure() {
     else {
         console.log("Session Exists. Checking if the Access Token has expired");
 
-        var expiry = JSON.parse(decodeToken(getCookie("accesstoken"))).exp;
+        var expiry = decodeToken(getCookie("accesstoken")).exp;
         console.log("Expiry: " + expiry);
         var currentTime = new Date().getTime() / 1000;
         console.log("Current Time: " + currentTime);
-        if (exp < currentTime) {
+        if (expiry < currentTime) {
 
             console.log("Access Token has Expired. Refreshing...");
             refreshTokens(function (error, result) {
@@ -268,7 +268,6 @@ function refreshTokens(callback) {
     request.send(formBody);
 }
 
-}
 
 function exchangeCodeForToken(code, callback) {
 
