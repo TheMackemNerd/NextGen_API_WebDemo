@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		callback.html = callback.html
 		datapull.html = datapull.html
 		error.html = error.html
+		favicon.ico = favicon.ico
 		index.html = index.html
 		invite.html = invite.html
 		invitesent.html = invitesent.html
