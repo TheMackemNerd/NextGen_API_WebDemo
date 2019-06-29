@@ -38,6 +38,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{06D0A4
 		images\loader.gif = images\loader.gif
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sass", "sass", "{DA3F64CA-843D-4593-862C-51B14A1CCC2D}"
+	ProjectSection(SolutionItems) = preProject
+		sass\style.scss = sass\style.scss
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +51,7 @@ Global
 		{D7B65EA8-C36F-4D75-A6A3-A0F31246F30B} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
 		{1F5F9FF4-07E1-4CDF-BF06-55C03B6C5B56} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
 		{06D0A4F8-2645-4FB6-9424-196A4A6A3F6D} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
+		{DA3F64CA-843D-4593-862C-51B14A1CCC2D} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {747FCEFA-9FD0-432D-8BA0-50F3044055BA}
