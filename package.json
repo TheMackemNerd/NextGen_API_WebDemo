@@ -1,9 +1,0 @@
-{
-  "name": "NextGen API Web Demo",
-  "description": "The client-facing web site which is used to test the authentication prior to calling an API",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "express": "3.x"
-  }
-}
