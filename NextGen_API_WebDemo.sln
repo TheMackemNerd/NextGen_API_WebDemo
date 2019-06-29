@@ -40,6 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{06D0A4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sass", "sass", "{DA3F64CA-843D-4593-862C-51B14A1CCC2D}"
 	ProjectSection(SolutionItems) = preProject
+		sass\bootstrap.scss = sass\bootstrap.scss
 		sass\style.scss = sass\style.scss
 	EndProjectSection
 EndProject
