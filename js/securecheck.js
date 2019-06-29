@@ -406,8 +406,8 @@ function getUserRecord(token, sub, callback) {
 
         var request = new XMLHttpRequest();
         console.log("Preparing to call API");
-        console.log("Sub: " + sub);
-        request.open('GET', apiGateway + '/poc/users?sub=' + sub, true);
+        //request.open('GET', apiGateway + '/poc/users?sub=' + sub, true);
+        request.open('GET', apiGateway + '/poc/users/me', true);
         request.setRequestHeader("Authorization", token);
         request.setRequestHeader("x-api-key", apiKey);
         request.setRequestHeader("Content-Type", "application/json");
