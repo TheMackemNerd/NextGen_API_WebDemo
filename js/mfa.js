@@ -1,5 +1,8 @@
 function getMFAStatus() {
 
+    console.log("Retrieving Access Token");
+    var token = getLocalVariable("accesstoken");
+
     var request = new XMLHttpRequest();
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users/mfa', true);
     request.setRequestHeader("Authorization", token);
