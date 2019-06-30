@@ -7,6 +7,8 @@ function getMFAStatus() {
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users/mfa', true);
     request.setRequestHeader("Authorization", token);
     request.setRequestHeader("x-api-key", apiKey);
+    request.setRequestHeader("Content-Type", "application/json");
+
     request.onload = function () {
 
         if (request.status != 200) {
