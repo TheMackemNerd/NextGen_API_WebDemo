@@ -1,7 +1,6 @@
 function getMFAStatus() {
 
     var request = new XMLHttpRequest();
-    console.log("Query Tenant: " + queryTenant);
     request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users/mfa', true);
     request.setRequestHeader("Authorization", token);
     request.setRequestHeader("x-api-key", apiKey);
