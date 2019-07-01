@@ -60,13 +60,17 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-left fh5co-heading">
                         <h2>Multi-factor Authentication Status</h2>
-                        <table>
+                        <table width="100%" style="border-collapse:collapse">
                             <tr>
-                                <td width="20%">Status:</td>
+                                <td width="25%" style="vertical-align:middle">MFA Enabled:</td>
                                 <td><label class="switch">
                                         <input type="checkbox" id="mfaStatus">
                                         <span class="slider round"></span>
                                     </label>
+                                </td>
+                                <td  style="vertical-align:middle">Phone number:</td>
+                                <td>                                    
+                                    <input type="text" id="mfaPhone" width="300px" />
                                 </td>
                             </tr>
                         </table>
