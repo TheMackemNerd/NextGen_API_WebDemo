@@ -21,7 +21,7 @@ function getMFAStatus() {
             console.log("API call Success");
             var data = this.response;
             document.getElementById("mfaStatus").checked = JSON.parse(data).mfa_enabled;
-            document.getElementById("mfaPhone").textContent = JSON.parse(data).phone;
+            document.getElementById("mfaPhone").textContent = JSON.parse(data).phone_number;
 
         }
 
