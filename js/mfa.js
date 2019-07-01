@@ -20,7 +20,7 @@ function getMFAStatus() {
         else {
             console.log("API call Success");
             var data = this.response;
-            document.getElementById("mfaStatus").innerHTML = JSON.parse(data).mfa_enabled;
+            document.getElementById("mfaStatus").checked = JSON.parse(data).mfa_enabled;
 
         }
 
