@@ -38,7 +38,7 @@ function doDataPull() {
         // Call the API
         var request = new XMLHttpRequest();
         console.log("Query Tenant: " + queryTenant);
-        request.open('GET', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/tenants?id=' + queryTenant, true);
+        request.open('GET', apiGateway + '/tenants?id=' + queryTenant, true);
         request.setRequestHeader("Authorization", token);
         request.setRequestHeader("x-api-key", apiKey);
         request.setRequestHeader("Content-Type", "text/plain");

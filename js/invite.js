@@ -40,7 +40,7 @@ function doInvite() {
         // Call the API
         console.log("Creating API Call");
         var request = new XMLHttpRequest();
-        request.open('POST', 'https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com/poc/users');
+        request.open('POST', apiGateway + '/users');
         request.setRequestHeader("Authorization", token);
         request.setRequestHeader("x-api-key", apiKey);
         request.setRequestHeader("Content-Type", "application/json");
