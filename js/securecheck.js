@@ -7,7 +7,7 @@ const apiKey = "A1HHVth5O34G649izzSy46z5Haja5pZ39SV1A2j7";
 const redirectUri = "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/callback.html";
 const logoutUri = "https://ec2-34-241-195-116.eu-west-1.compute.amazonaws.com/loggedout.html";
 const identityProvider = "https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com";
-const apiGateway = "https://2y3ps0tqaj.execute-api.eu-west-1.amazonaws.com";
+const apiGateway = "https://api.irisws-development.co.uk/payroll";
 
 /*
  * FUNCTIONS RELATED TO THE GENERAL LOG-IN CHECK (Takes place in the Head of every page)
