@@ -1,0 +1,221 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* BUTTONS */
+
+.sg-btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: text-top;
+  position: relative;
+  margin: 0 0.5em 0.5em 0;
+  font-weight: 600;
+  line-height: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  transition: box-shadow $sg-speed-fast, background-color $sg-speed-fast, border-color $sg-speed-fast;
+  cursor: pointer;
+  &:last-child {
+    margin-right: 0;
+  }
+  &:not([disabled]) {
+    &:hover,&:focus {
+      border-color: transparent;
+      transition: box-shadow $sg-speed, background-color $sg-speed, border-color $sg-speed;
+      &:before {
+        background-position: center -1000px, center
+      }
+    }
+  }
+  &[disabled] {
+    border-style: dashed;
+    box-shadow: none;
+    font-style: italic;
+    cursor: not-allowed;
+    &:before {
+      opacity: 0.73;
+    }
+    &[class*="sg-btn-negative-"] {
+      &:before {
+        opacity: 0.48;
+      }
+    }
+  }
+
+  &[class*="sg-btn-icon-"] {
+    &:before {
+      content: "";
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      height: 1.2em;
+      margin-right: 0.5em;
+      background-size: 100%;
+      background-position: center, center -1000px;
+      background-repeat: no-repeat;
+    }
+    &.sg-btn-icon-right {
+      flex-direction: row-reverse;
+      &:before {
+        margin-right: auto;
+        margin-left: 0.5em;
+      }
+    }
+  }
+}
+
+@mixin sg-btn-size($size,$padding,$radius,$font-size) {
+  min-width: $size;
+  height: $size;
+  padding: 0 $padding;
+  font-size: $font-size;
+  border-radius: $radius;
+}
+
+.sg-btn, .sg-btn-normal { @include sg-btn-size($sg-btn-size-normal,$sg-btn-x-padding-normal,$sg-radius-small, 1rem); }
+.sg-btn-tiny { @include sg-btn-size($sg-btn-size-tiny,$sg-btn-x-padding-tiny,$sg-radius-small, 0.875rem); }
+.sg-btn-small { @include sg-btn-size($sg-btn-size-small,$sg-btn-x-padding-small,$sg-radius-small, 0.875rem); }
+.sg-btn-large { @include sg-btn-size($sg-btn-size-large,$sg-btn-x-padding-large,$sg-radius, 1.2rem); }
+
+.sg-btn-inline {
+  @include sg-btn-size(1.5em,$sg-btn-x-padding-tiny,$sg-radius-small, 0.875em);
+  margin: 0 0.1em;
+  vertical-align: middle;
+  &:hover {
+    z-index: 10;
+  }
+}
+
+//.sg-btn-simple,
+.sg-btn-square,
+.sg-btn-round {
+  padding: 0;
+  &:before,
+  &:after {
+    margin: 0 !important;
+  }
+}
+
+//.sg-btn-simple,
+.sg-btn-round {
+  border-radius: 50%;
+}
+
+.sg-btn-primary {
+  @extend .sg-btn;
+  color: white;
+  background-color: $sg-color-dark-grey;
+  border-color: $sg-color-dark-grey;
+  box-shadow: 0 0 0 0 $sg-color-link;
+  &:not([disabled]) {
+    &:hover,&:focus {
+      color: white;
+      background-color: $sg-color-link;
+      border-color: $sg-color-link;
+      box-shadow: 0 0 0 $focus-size $sg-color-link;
+    }
+  }
+  &[disabled] {
+    color: $sg-color-disabled;
+    background-color: white;
+    border-color: $sg-color-disabled;
+  }
+}
+
+.sg-btn-secondary {
+  @extend .sg-btn;
+  color: $sg-color-text;
+  background-color: white;
+  border-color: $sg-color-border;
+  box-shadow: 0 0 0 0 $sg-color-link;
+  &:not([disabled]) {
+    &:hover, &:focus {
+      color: $sg-color-link;
+      background-color: white;
+      border-color: white;
+      box-shadow: 0 0 0 $focus-size $sg-color-link;
+    }
+  }
+  &[disabled] {
+    color: $sg-color-disabled;
+    background-color: white;
+    border-color: $sg-color-disabled;
+  }
+}
+
+.sg-btn-negative-primary {
+  @extend .sg-btn;
+  color: $sg-color-text;
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 0 0 0 white;
+  &:not([disabled]) {
+    &:hover,&:focus {
+      color: $sg-color-link;
+      background-color: white;
+      box-shadow: 0 0 0 $focus-size white;
+    }
+  }
+  &[disabled] {
+    color: $sg-color-disabled-negative;
+    background-color: $sg-color-dark-grey;
+    border-color: $sg-color-disabled-negative;
+  }
+}
+
+.sg-btn-negative-secondary {
+  @extend .sg-btn;
+  color: white;
+  background-color: $sg-color-dark-grey;
+  border-color: white;
+  box-shadow: 0 0 0 0 white;
+
+  &:not([disabled]) {
+    &:hover,&:focus {
+      border-color: $sg-color-dark-grey;
+      box-shadow: 0 0 0 $focus-size white;
+    }
+  }
+  &[disabled] {
+    color: $sg-color-disabled-negative;
+    background-color: $sg-color-dark-grey;
+    border-color: $sg-color-disabled-negative;
+  }
+}
+
+.sg-btn-simple {
+  @extend .sg-btn-secondary;
+  &:not([disabled]) {
+    &, &:hover, &:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+  &[disabled] {
+    background-color: transparent;
+  }
+}
+.sg-btn-negative-simple {
+  @extend .sg-btn-negative-secondary;
+  &:not([disabled]) {
+    &, &:hover, &:focus {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+  &[disabled] {
+    background-color: transparent;
+  }
+}
+
+.sg-btn-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  margin: 0;
+}

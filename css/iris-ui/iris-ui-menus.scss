@@ -1,0 +1,276 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* MENUS */
+
+///////////////////////////////////////////////////////////////
+/*
+Style blocks are in @mixins followed by .class+@inlcude so the
+rules can be included in @media directives (sass doesn't allow
+us to @extend a block outside its own directive)
+*/
+///////////////////////////////////////////////////////////////
+
+//the base menu:
+@mixin sg-menu {
+  width: 21rem;
+  max-width: 100vw;
+  height: auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+  background-color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.sg-menu { @include sg-menu; }
+
+
+@mixin sg-menu-left {
+  @include sg-menu;
+}
+.sg-menu-left { @include sg-menu-left; }
+
+@mixin sg-menu-right {
+  @include sg-menu;
+  border-radius: 0.5rem 0 0.5rem 0.5rem;
+}
+.sg-menu-right { @include sg-menu-right; }
+
+//when positioning the menu top left:
+@mixin sg-menu-top-left {
+  @include sg-menu;
+  border-radius: 0 0 0.5rem 0;
+  margin-left: 0;
+}
+.sg-menu-top-left { @include sg-menu-top-left; }
+
+//when positioning the menu top middle:
+@mixin sg-menu-top-middle {
+  @include sg-menu;
+  border-radius: 0 0 0.5rem 0.5rem;
+  margin: 0 auto;
+}
+.sg-menu-top-middle { @include sg-menu-top-middle; }
+
+//when positioning the menu top right:
+@mixin sg-menu-top-right {
+  @include sg-menu;
+  border-radius: 0 0 0 0.5rem;
+  margin-right: 0;
+  margin-left: auto;
+}
+.sg-menu-top-right { @include sg-menu-top-right; }
+
+//when the menu needs to be narrow:
+@mixin sg-menu-narrow {
+  width: 14rem;
+}
+.sg-menu-narrow { @include sg-menu-narrow; }
+
+@mixin sg-menu-wide {
+  width: 26rem;
+}
+.sg-menu-wide { @include sg-menu-wide; }
+
+
+//the base menu item:
+@mixin sg-menu-item {
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  background-color: white;
+  border-top: 1px solid $sg-color-border;
+  &:first-child {
+    border-top: none;
+  }
+  .sg-menu-item-subhead {
+    display: block;
+    font-style: italic;
+  }
+}
+.sg-menu-item { @include sg-menu-item; }
+
+//a self-focussing menu item:
+@mixin sg-menu-item-focus-self {
+  @include sg-menu-item;
+  a, button {
+    display: block;
+    padding: 1em;
+    width: 100%;
+    border: none;
+    color: $sg-color-text;
+    text-decoration: none;
+    text-align: left;
+    &:hover,&:focus {
+      background-color: $sg-color-link;
+      box-shadow: none;
+      color: white;
+      outline: none;
+    }
+  }
+}
+.sg-menu-item-focus-self { @include sg-menu-item-focus-self; }
+
+//a child-focussing menu item:
+@mixin sg-menu-item-focus-child {
+  @include sg-menu-item;
+  padding: 1em;
+  a {
+    text-decoration: none;
+    span.sg-btn-round {
+      margin-bottom: 0;
+      vertical-align: middle;
+      span {
+        vertical-align: sub;
+      }
+    }
+    span.sg-link {
+      border-bottom: 0;
+      color: $sg-color-text;
+      vertical-align: middle;
+    }
+    &:hover, &:focus {
+      outline: none;
+      span.sg-link {
+        background-color: white;
+        color: $sg-color-link;
+        box-shadow: none;
+        border-bottom: 1px dotted $sg-color-link;
+      }
+      span.sg-btn-round {
+        background-color: $sg-color-link;
+        color: white;
+        box-shadow: 0 0 0 $focus-size $sg-color-link;
+        transition: box-shadow 0.2s, background-color 0s;
+        border-color: $sg-color-link;
+      }
+    }
+  }
+}
+.sg-menu-item-focus-child { @include sg-menu-item-focus-child; }
+
+.sg-menu-item-toggle {
+  font-size: 0.875rem;
+  padding: 0;
+
+  input[type=checkbox] ~ label span,
+  input[type=radio] ~ label span {
+    padding: 1em;
+  }
+  &:first-child input[type=radio] ~ label {
+    margin-top: 0.5em;
+  }
+  &:last-child input[type=radio] ~ label {
+    margin-bottom: 0.5em;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it, because we have a better one
+    & ~ label {
+      display: block;
+      position: relative;
+      padding-left: 0;
+      cursor: pointer;
+      span {
+        display: block;
+        color: $sg-color-text;
+        border: none;
+        text-decoration: none;
+        background-color: white;
+
+        &:before {
+          content: '';
+          display: inline-block;
+          position: relative;
+          vertical-align: baseline;
+          top: -0.05em;
+          margin-right: 0.8em;
+          width: 0.5rem;
+          height: 0.5rem;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    //Active and interacted with
+    &:not([disabled]) {
+      &:not([checked]) ~ label span:before {
+      //  background-color: transparent;
+      }
+      &:checked ~ label span:before {
+        background-color: $sg-color-dark-grey;
+      }
+      & ~ label span:hover,
+      &:focus ~ label span {
+        background-color: $sg-color-link;
+        box-shadow: none;
+        color: white;
+      }
+      &:checked ~ label:hover span:before,
+      &:checked:focus ~ label span:before {
+        background-color: white;
+      }
+    }
+
+    // Disabled
+    &[disabled] {
+      ~ label {
+        cursor: not-allowed;
+        &, &:hover {
+          span {
+            background-color: white;
+            color: $sg-color-disabled;
+          }
+        }
+      }
+      &:checked ~ label span:before {
+        background-color: $sg-color-disabled;
+      }
+    }
+  }
+}
+
+.sg-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  width: 100%;
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  span {
+    padding: 0;
+    margin: 0 0.5em 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    font-style: italic;
+  }
+  ul,ol {
+    width: auto;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 0;
+    li {
+      display: inline-block;
+      margin-left: 0.25rem;
+      &:not(:last-child) {
+        margin-right: 0.25rem;
+      }
+      button {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.sg-table + .sg-pagination {
+  margin-top: 1rem;
+}

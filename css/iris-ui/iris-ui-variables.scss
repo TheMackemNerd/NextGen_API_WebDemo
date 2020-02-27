@@ -1,0 +1,127 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* VARIABLES AND MIXINS */
+
+
+/* BASE FONT STYLES */
+
+$sg-font-family-text:  'Open Sans',"Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto","Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans","Lato", "Helvetica Neue", Arial, sans-serif;;
+$sg-base-size-normal: 16px;
+$sg-base-size-mobile: 14px;
+
+
+/* COLOURS */
+
+$sg-color-cascade-primary:      #c61d21;
+
+$sg-iris-brand-red-solid:         #C8102E; //IRIS Red
+$sg-iris-brand-blue-solid:        #62B5E5; //IRIS Blue
+$sg-iris-brand-grey-solid:        #24303B; //IRIS Grey
+$sg-iris-brand-orange-solid:      #ED8B00; //IRIS Orange
+$sg-iris-brand-teal-solid:        #0089A4; //IRIS Teal
+$sg-iris-brand-purple-solid:      #93328E; //IRIS Purple
+
+$sg-iris-ui-red-background:       #F7DBE0; //15% $sg-iris-brand-red-solid
+$sg-iris-ui-blue-background:      #E0F0FA; //20% $sg-iris-brand-blue-solid
+$sg-iris-ui-grey-background:      #EBECED; //9% $sg-iris-brand-grey-solid
+$sg-iris-ui-orange-background:    #FBE8CC; //20% $sg-iris-brand-orange-solid
+$sg-iris-ui-teal-background:      #CCE7ED; //20% $sg-iris-brand-teal-solid
+$sg-iris-ui-purple-background:    #EFE0EE; //15% $sg-iris-brand-purple-solid
+$sg-iris-ui-green-background:     #DAED89; //extends palette
+$sg-iris-ui-yellow-background:    #FAF0A4; //extends palette
+
+$sg-iris-ui-red-graphic:          #C8102E; //100% $sg-iris-brand-red-solid
+$sg-iris-ui-blue-graphic:         #1F86C1; //extends IRIS Blue
+$sg-iris-ui-grey-graphic:         #798087; //60% $sg-iris-brand-grey-solid
+$sg-iris-ui-orange-graphic:       #B86B00; //20% $sg-iris-brand-orange-solid
+$sg-iris-ui-teal-graphic:         #0089A4; //100% $sg-iris-brand-teal-solid
+$sg-iris-ui-purple-graphic:       #AE65AA; //75% $sg-iris-brand-purple-solid
+$sg-iris-ui-green-graphic:        #688F24; //extends palette
+$sg-iris-ui-yellow-graphic:       #A38300; //extends palette
+
+$sg-color-disabled:               #6B6B6B; //75% $sg-iris-brand-grey-solid
+$sg-color-disabled-negative:      #91979D; //50% $sg-iris-brand-grey-solid
+
+$sg-color-link:                   #0B61BD; //extends palette
+
+$sg-color-text:         $sg-iris-brand-grey-solid;
+$sg-color-dark-grey:    $sg-iris-brand-grey-solid;
+$sg-color-light-grey:   $sg-iris-ui-grey-background;
+$sg-color-border:       $sg-iris-ui-grey-graphic;
+
+$sg-color-positive:     $sg-iris-ui-green-graphic;
+$sg-color-notice:       $sg-iris-ui-orange-graphic;
+$sg-color-warning:      $sg-iris-ui-red-graphic;
+
+
+/* MEDIA QUERIES */
+
+$sg-breakpoint-narrower:  400px;
+$sg-breakpoint-narrow:  500px;
+$sg-breakpoint-mid:  700px;
+$sg-breakpoint-wide:  900px;
+$sg-breakpoint-wider:  1200px;
+
+$sg-admin-window-min-width: 1050px;
+
+
+/* GRAPHICS */
+
+$sg-menu-box-shadow:   0 2rem 4rem rgba(0, 0, 0, 0.2), 0 0.25rem 1rem 0.15rem rgba(0, 0, 0, 0.1);
+$sg-tooltip-box-shadow:  0 0.5em 1.75em rgba(0,0,0,0.6);
+
+$sg-radius-tiny: 3px;
+$sg-radius-small: 0.3rem;
+$sg-radius: 0.5rem;
+$sg-radius-large: 1rem;
+
+$sg-table-cell-outer-padding: 1.5em;
+
+$sg-btn-x-padding-normal: 1em;
+$sg-btn-x-padding-tiny: 0.5em;
+$sg-btn-x-padding-small: 0.75em;
+$sg-btn-x-padding-large: 1.25em;
+$sg-btn-x-padding-inline-normal: 0.5em;
+
+$sg-btn-size-normal: 3rem;
+$sg-btn-size-tiny: 1.5rem;
+$sg-btn-size-small: 2rem;
+$sg-btn-size-large: 3.5rem;
+
+$sg-label-width-normal: 10rem;
+$sg-label-width-wide: 16rem;
+
+$sg-header-height-wide: 5rem;
+$sg-header-height-narrow: 3rem;
+$sg-header-stripe-width: $sg-header-height-wide / 8;
+$sg-header-breakpoint: $sg-breakpoint-mid;
+
+$sg-sidebar-width: $sg-header-height-wide * 3;
+
+$focus-size: 0.2rem;
+
+$sg-ui-margin-small: 1rem;
+$sg-ui-margin-normal: 2rem;
+$sg-ui-margin-large: 4rem;
+$sg-ui-margin-big: 6rem;
+
+
+/* ANIMATIONS */
+
+$sg-speed: 0.2s;
+$sg-speed-fast: 0.1s;
+
+
+
+/* GLOBALLY-USED MIXINS */
+
+@mixin sr-only {
+  display: block;
+	position: absolute;
+	top: -10000vh;
+	left: -10000vw;
+	height: 1px;
+	width: 1px;
+}
+.sr-only {
+	@include sr-only;
+}

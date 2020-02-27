@@ -1,0 +1,216 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* PANELS */
+
+.sg-panel {
+  display: block;
+  position: relative;
+  background-color: transparent;
+  overflow: visible;
+  &:not(:last-child) {
+    margin-bottom: $sg-ui-margin-normal;
+  }
+}
+.sg-panel-shadow {
+  @extend .sg-panel;
+  border-radius: $sg-radius;
+  box-shadow: $sg-menu-box-shadow;
+}
+
+
+@mixin panel-content($panel-border-color) {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+  border-right: 1px solid ($panel-border-color);
+  border-left: 1px solid ($panel-border-color);
+  &:first-child {
+    border-top-left-radius: $sg-radius;
+    border-top-right-radius: $sg-radius;
+    border-top: 1px solid $panel-border-color;
+  }
+  &:last-child {
+    border-bottom: 1px solid $panel-border-color;
+    border-bottom-right-radius: $sg-radius;
+    border-bottom-left-radius: $sg-radius;
+  }
+
+}
+
+.sg-panel-contents,
+.sg-panel-header {
+  &, &-white {
+    @include panel-content($sg-color-border);
+    background-color: white;
+  }
+  &-light {
+    @include panel-content($sg-color-border);
+    background-color: $sg-color-light-grey;
+  }
+  &-dark {
+    @include panel-content($sg-color-border);
+    background-color: $sg-color-dark-grey;
+    color: white;
+    &, &:first-child, &:last-child {
+      border: none;
+    }
+
+    p, span, dt, td, h2, h3, h4 {
+      color: white;
+    }
+  }
+  &.sg-panel-norule {
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
+  &-red {
+    @include panel-content($sg-iris-ui-red-graphic);
+    background-color: $sg-iris-ui-red-background;
+  }
+  &-blue {
+    @include panel-content($sg-iris-ui-blue-graphic);
+    background-color: $sg-iris-ui-blue-background;
+  }
+  &-grey {
+    @include panel-content($sg-iris-ui-grey-graphic);
+    background-color: $sg-iris-ui-grey-background;
+  }
+  &-orange {
+    @include panel-content($sg-iris-ui-orange-graphic);
+    background-color: $sg-iris-ui-orange-background;
+  }
+  &-purple {
+    @include panel-content($sg-iris-ui-purple-graphic);
+    background-color: $sg-iris-ui-purple-background;
+  }
+  &-teal {
+    @include panel-content($sg-iris-ui-teal-graphic);
+    background-color: $sg-iris-ui-teal-background;
+  }
+  &-green {
+    @include panel-content($sg-iris-ui-green-graphic);
+    background-color: $sg-iris-ui-green-background;
+  }
+  &-yellow {
+    @include panel-content($sg-iris-ui-yellow-graphic);
+    background-color: $sg-iris-ui-yellow-background;
+  }
+
+}
+
+.sg-panel-contents-simple {
+  //@include panel-content($sg-color-border);
+  //border-right: none;
+  //border-left: none;
+//  border: none;
+//  background-color: white;
+  &, &:first-child, &:last-child {
+    border: none;
+  }
+}
+
+
+.sg-panel-header {
+  &, &-white, &-dark, &-light, &-simple {
+    padding: $sg-ui-margin-small 3.5rem $sg-ui-margin-small $sg-ui-margin-normal;
+    //min-height: 1.8rem;
+    .sg-h2, .sg-h3, .sg-h4, .sg-h5, .sg-h6 {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+}
+
+.sg-panel-contents,
+.sg-panel-contents-white,
+.sg-panel-contents-light,
+.sg-panel-contents-simple,
+.sg-panel-header,
+.sg-panel-header-white,
+.sg-panel-header-light,
+.sg-panel-header-simple,
+.sg-panel-header-simple {
+  &:not(.sg-panel-header-borderless) {
+    & + .sg-panel-contents,
+    & + .sg-panel-contents-white,
+    & + .sg-panel-contents-light,
+    & + .sg-panel-contents-dark,
+    & + .sg-panel-contents-simple {
+      border-top: 1px solid $sg-color-border;
+    }
+  }
+}
+
+.sg-panel-header-dark,
+.sg-panel-contents-dark {
+  & + .sg-panel-contents-dark {
+    border-top: 1px solid $sg-color-border;
+  }
+}
+
+@mixin sg-panel-group {
+  display: grid;
+  grid-gap: $sg-ui-margin-small;
+  margin-bottom: $sg-ui-margin-large;
+  .sg-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    text-align: center;
+    margin-bottom: 0;
+    @media screen and (max-width: $sg-breakpoint-wide) {
+      display: block;
+    }
+    .sg-panel-header {
+      flex-grow: 0;
+    }
+    .sg-panel-contents {
+      &, &-dark, &-light, &-simple {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.sg-panel-group-two {
+  @include sg-panel-group;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: ". .";
+
+  @media all and (-ms-high-contrast:none) {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: $sg-breakpoint-wide) {
+    grid-template-columns: 1fr;
+    grid-template-areas: ".";
+
+    @media all and (-ms-high-contrast:none) {
+      -ms-grid-columns: 1fr;
+    }
+  }
+
+}
+.sg-panel-group-three {
+  @include sg-panel-group;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: ". . .";
+
+  @media all and (-ms-high-contrast:none) {
+    display: -ms-grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+  }
+
+  @media screen and (max-width: $sg-breakpoint-wide) {
+    grid-template-columns: 1fr;
+    grid-template-areas: ".";
+
+    @media all and (-ms-high-contrast:none) {
+      -ms-grid-columns: 1fr;
+    }
+  }
+}

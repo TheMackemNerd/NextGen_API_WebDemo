@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/guide.css?v=325">
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/iris-ui.css?v-234">
+
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.browser.min.js"></script>
@@ -23,26 +26,187 @@
     <title>API and Authentication POC Client</title>
 </head>
 <body>
-    <div id="page">
-        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <div class="display-t js-fullheight">
-                            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-                                <h1>Logging you in</h1>
-                            </div>
-                        </div>
+
+    <a href="#main" class="sg-skip-to-content">Tap Enter to skip to main content</a>
+
+    <header class="sg-header">
+        <nav>
+            <ul>
+                <li class="sg-header-company">
+                    <a href="/" aria-label="Go to the homepage" title="Homepage">
+                        <img src="images/iris-logo-white.png" alt="IRIS">
+                    </a>
+                </li>
+                <li class="sg-header-sections open-toggle">
+                    <button type="button" class="sg-header-menu-button" aria-label="Open main menu"></button>
+                    <ul>
+                        <li><a href="/logout.html">Logout</a></li>
+                    </ul>
+                </li>
+
+                <!--
+                        <li class="sg-header-user open-toggle">
+                        <button type="button" class="sg-header-menu-button" aria-label="Open options menu"></button>
+                        <ul class="sg-menu-top-right">
+                          <li class="sg-menu-item-focus-self"><a href="/auth-login">Log out</a></li>
+                        </ul>
+                      </li>
+                -->
+
+            </ul>
+        </nav>
+        <span class="sg-header-stripe"></span>
+    </header>
+
+    <main class="sg-main" id="main">
+
+        <div class="sg-hgroup">
+            <h1 class="sg-h1" id="username"></h1>
+            <p class="sg-text" id="tenant"></p>
+
+        </div>
+
+        <div class="content">
+
+            <div class="sg-panel-group">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Callback - Inbound</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtCode">Authorization Code</label></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" disabled="" size="70" id="txtCode" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtState">State</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" disabled="" size="70" id="txtState" />&nbsp;<img src="images/ok.png" width="40" id="imgOk" hidden="hidden" />&nbsp;<img src="images/warn.png" width="40" id="imgWarn" hidden="hidden" /></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-    
+            <br />
+            <div class="sg-panel-group">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Token Exchange</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtIdp">Identity Provider</label></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="70" id="txtIdp" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtPath">Token Path</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtPath" value="oauth2/token" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtCodeA">Authorization Code</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" disabled="" size="70" id="txtCodeA" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtGrantType">Grant Type</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtGrantType" value="authorization_code" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtClientId">Client ID</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtClientId" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtCallback">Callback URL</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtCallback" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtValidator">PKCE Validator</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtValidator" onchange="buildCurl();" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtCurl">CURL Script</label></td>
+                                <td><textarea id="txtCurl" class="sg-textarea" rows="9"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <button class="sg-btn-primary" id="btnToken" onclick="getToken();">Get Token</button>
+                                    <br />
+                                    <div id="divAlert" hidden="hidden">
+                                        <span class="sg-notice" role="alert" id="spaTokenWarn"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="sg-panel-group" id="tokenPanel" hidden="hidden">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Token Response</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtAccessToken">access_token</label></td>
+                                <td width="75%"><textarea class="sg-textarea" rows="4" id="txtAccessToken"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtDecodedToken">Decoded Token</label></td>
+                                <td><textarea class="sg-textarea" rows="10" id="txtDecodedToken"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <a class="sg-btn-primary" href="secure.html">Go to Protected Resource</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
     <script>
 
         try {
+
+            var urlParams = new URLSearchParams(window.location.search);
+            var code = urlParams.get("code");
+            var state = urlParams.get("state");
+
+            document.getElementById("txtCode").value = code;
+            document.getElementById("txtCodeA").value = code;
+            document.getElementById("txtState").value = state;
+
+            document.getElementById("txtIdp").value = sessionStorage.getItem("idp");
+            document.getElementById("txtClientId").value = sessionStorage.getItem("clientId");
+            document.getElementById("txtCallback").value = sessionStorage.getItem("callbackUri");
+            document.getElementById("txtValidator").value = sessionStorage.getItem("validator");
+
+            if (sessionStorage.getItem("state") == state) {
+                document.getElementById("imgOk").hidden = "";
+                document.getElementById("imgWarn").hidden = "hidden";
+            }
+            else {
+                document.getElementById("imgOk").hidden = "hidden";
+                document.getElementById("imgWarn").hidden = "";
+            }
+
+            buildCurl();
+
+            /*
             AuthCodeCheck(function (error, result) {
                 if (error) {
                     console.log("Check is in error");
@@ -62,13 +226,57 @@
                     }
                     window.location.replace(path);
                 }
-            });
+            }); */
         }
         catch (e) {
             window.location.replace("error.html?errordesc=" + e);
         }
 
 
+
+        async function buildCurl() {
+
+            var strCurl = "curl --location --request POST '" + document.getElementById("txtIdp").value + "/" + document.getElementById("txtPath").value + "' \ \n";
+            strCurl += "--header 'Content-Type: application/x-www-form-urlencoded' \ \n";
+            strCurl += "--data-urlencode 'grant_type: " + document.getElementById("txtGrantType").value + "' \ \n";
+            strCurl += "--data-urlencode 'client_id: " + document.getElementById("txtClientId").value + "' \ \n";
+            strCurl += "--data-urlencode 'redirect_uri: " + encodeURIComponent(document.getElementById("txtCallback").value) + "' \ \n";
+            strCurl += "--data-urlencode 'code_verifier: " + document.getElementById("txtValidator").value + "' \ \n";
+            strCurl += "--data-urlencode 'code: " + document.getElementById("txtCodeA").value + "' \ \n";
+
+            document.getElementById("txtCurl").value = strCurl;
+
+        };
+
+        async function getToken() {
+
+            exchangeCodeForToken(document.getElementById("txtCodeA").value, document.getElementById("txtClientId").value, document.getElementById("txtCallback").value, document.getElementById("txtValidator").value,  function (error, result) {
+                if (error) {
+                    document.getElementById("spaTokenWarn").innerText = "There was an error retrieving the Token: " + error;
+                    document.getElementById("divAlert").hidden = "";
+                    return false;
+                }
+                else {
+                    document.getElementById("divAlert").hidden = "hidden";
+                    document.getElementById("tokenPanel").hidden = "";
+                    // Extract the Access & Refresh tokens from the payload
+                    var localtoken = JSON.parse(result).access_token;
+
+                    document.getElementById("txtToken").value = localtoken;
+                    sessionStorage.getItem("token") = localtoken;
+
+                    var refreshtoken = JSON.parse(result).refresh_token;
+
+                    // Convert the string into a JWT object
+                    var JWT = decodeToken(localtoken);
+                    document.getElementById("txtDecodedToken").value = JSON.stringify(JWT);
+
+                    return true;
+                }
+
+            });
+
+        }
 
     </script>
 

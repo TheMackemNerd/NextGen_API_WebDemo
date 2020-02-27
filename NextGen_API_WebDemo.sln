@@ -15,11 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		loggedout.html = loggedout.html
 		logout.html = logout.html
 		mfa.html = mfa.html
+		secure.html = secure.html
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{D7B65EA8-C36F-4D75-A6A3-A0F31246F30B}"
 	ProjectSection(SolutionItems) = preProject
 		css\animate.css = css\animate.css
+		..\IRIS.Architecture.Principles\_scss\guide.scss = ..\IRIS.Architecture.Principles\_scss\guide.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui.scss
 		css\style.css = css\style.css
 		css\style.css.map = css\style.css.map
 	EndProjectSection
@@ -37,14 +40,56 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{1F5F9FF4-07E1-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{06D0A4F8-2645-4FB6-9424-196A4A6A3F6D}"
 	ProjectSection(SolutionItems) = preProject
+		..\IRIS.Architecture.Principles\assets\sg-img\iris-logo-white.png = ..\IRIS.Architecture.Principles\assets\sg-img\iris-logo-white.png
 		images\kf-dark.png = images\kf-dark.png
 		images\loader.gif = images\loader.gif
+		images\ok.png = images\ok.png
+		images\warn.png = images\warn.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sass", "sass", "{DA3F64CA-843D-4593-862C-51B14A1CCC2D}"
 	ProjectSection(SolutionItems) = preProject
 		sass\bootstrap.scss = sass\bootstrap.scss
 		sass\style.scss = sass\style.scss
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guide", "guide", "{EA8A7FCA-CA34-46B6-A2D1-F67DBFA01452}"
+	ProjectSection(SolutionItems) = preProject
+		..\IRIS.Architecture.Principles\_scss\guide\guide-aside.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-aside.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-examples.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-examples.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-footer.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-footer.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-header.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-header.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-main.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-main.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-reset.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-reset.scss
+		..\IRIS.Architecture.Principles\_scss\guide\guide-variables.scss = ..\IRIS.Architecture.Principles\_scss\guide\guide-variables.scss
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iris-ui", "iris-ui", "{E5BB65BB-5502-4A98-B308-BA19B1F72FEE}"
+	ProjectSection(SolutionItems) = preProject
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-avatar.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-avatar.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-basics.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-basics.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-body.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-body.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-buttons.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-buttons.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-calendar.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-calendar.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-colors.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-colors.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-colour-picker.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-colour-picker.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-footer.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-footer.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-forms.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-forms.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-header.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-header.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-icons.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-icons.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-inbox.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-inbox.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-links.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-links.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-loading.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-loading.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-menus.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-menus.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-overlays.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-overlays.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-panels.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-panels.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-reset.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-reset.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-sidebar.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-sidebar.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-tables.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-tables.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-tabs.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-tabs.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-type.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-type.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-validation-notification.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-validation-notification.scss
+		..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-variables.scss = ..\IRIS.Architecture.Principles\_scss\iris-ui\iris-ui-variables.scss
 	EndProjectSection
 EndProject
 Global
@@ -56,6 +101,8 @@ Global
 		{1F5F9FF4-07E1-4CDF-BF06-55C03B6C5B56} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
 		{06D0A4F8-2645-4FB6-9424-196A4A6A3F6D} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
 		{DA3F64CA-843D-4593-862C-51B14A1CCC2D} = {534E6249-F5AB-4564-8F23-D3F3056DFE41}
+		{EA8A7FCA-CA34-46B6-A2D1-F67DBFA01452} = {D7B65EA8-C36F-4D75-A6A3-A0F31246F30B}
+		{E5BB65BB-5502-4A98-B308-BA19B1F72FEE} = {D7B65EA8-C36F-4D75-A6A3-A0F31246F30B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {747FCEFA-9FD0-432D-8BA0-50F3044055BA}

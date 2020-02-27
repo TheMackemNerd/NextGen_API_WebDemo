@@ -1,0 +1,110 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* ICONS */
+
+//set the appropriate backgrounds; used in the sg-btn-icon mixin
+@mixin btn-backgrounds($icon-name, $icon-out, $icon-in, $icon-disabled) {
+  &:not([disabled]) {
+    &:before {
+      background-image:
+      url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-#{$icon-out}.svg),
+      url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-#{$icon-in}.svg);
+    }
+  }
+  &[disabled] {
+    &:before {
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-#{$icon-disabled}.svg);
+    }
+  }
+}
+
+//create the icon-ed buttons
+@mixin sg-btn-icon($icon-name, $icon-size) {
+  .sg-btn-icon-#{$icon-name} {
+    &:before {
+      width: #{$icon-size}em;
+    }
+    &.sg-btn-primary {
+      @include btn-backgrounds($icon-name, 'negative', 'negative','positive');
+    }
+    &.sg-btn-secondary,
+    &.sg-btn-simple {
+      @include btn-backgrounds($icon-name,'positive', 'active','positive');
+    }
+    &.sg-btn-negative-primary {
+      @include btn-backgrounds($icon-name, 'positive', 'active','negative');
+    }
+    &.sg-btn-negative-secondary,
+    &.sg-btn-negative-simple {
+      @include btn-backgrounds($icon-name, 'negative', 'negative','negative');
+    }
+  }
+
+  //purely for the style guide
+  .sg-icon-#{$icon-name}-positive {
+    width: #{$icon-size}em;
+    background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-positive.svg);
+  }
+  .sg-icon-#{$icon-name}-negative {
+    width: #{$icon-size}em;
+    background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-negative.svg);
+  }
+  .sg-icon-#{$icon-name}-active {
+    width: #{$icon-size}em;
+    background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-active.svg);
+  }
+  @if $icon-name == 'alert' {
+    .sg-icon-#{$icon-name}-notice {
+      width: #{$icon-size}em;
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-notice.svg);
+    }
+    .sg-icon-#{$icon-name}-warning {
+      width: #{$icon-size}em;
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-warning.svg);
+    }
+  }
+  @if $icon-name == 'chevron-down' {
+    .sg-icon-#{$icon-name}-disabled {
+      width: #{$icon-size}em;
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-#{$icon-name}-disabled.svg);
+    }
+  }
+}
+
+
+// process the icons
+@include sg-btn-icon('chevron-up', 1);
+@include sg-btn-icon('chevron-right', 0.77);
+@include sg-btn-icon('chevron-down', 1);
+@include sg-btn-icon('chevron-left', 0.77);
+@include sg-btn-icon('chevron-fast-right', 1.26);
+@include sg-btn-icon('chevron-fast-left', 1.26);
+@include sg-btn-icon('toggle-up', 1);
+@include sg-btn-icon('toggle-right', 1);
+@include sg-btn-icon('toggle-down', 1);
+@include sg-btn-icon('toggle-left', 1);
+@include sg-btn-icon('pencil', 1);
+@include sg-btn-icon('person', 1);
+@include sg-btn-icon('print', 1.11);
+@include sg-btn-icon('close', 1);
+@include sg-btn-icon('plus', 1);
+@include sg-btn-icon('minus', 1);
+@include sg-btn-icon('question', 1);
+@include sg-btn-icon('calendar', 1);
+@include sg-btn-icon('star', 1.06);
+@include sg-btn-icon('star-outline', 1.06);
+@include sg-btn-icon('burger', 1);
+@include sg-btn-icon('burger-ellipsis', 1);
+@include sg-btn-icon('tick', 1);
+@include sg-btn-icon('back', 1);
+@include sg-btn-icon('delete', 1);
+@include sg-btn-icon('eye', 1.2);
+@include sg-btn-icon('sync', 1);
+@include sg-btn-icon('refresh', 1);
+@include sg-btn-icon('export', 1);
+@include sg-btn-icon('merge', 1);
+@include sg-btn-icon('email', 1.1);
+@include sg-btn-icon('filter', 1);
+@include sg-btn-icon('search', 1);
+@include sg-btn-icon('settings', 1);
+@include sg-btn-icon('alert', 1.14);
+@include sg-btn-icon('upload', 1);

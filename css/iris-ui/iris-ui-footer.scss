@@ -1,0 +1,41 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* FOOTER */
+
+.sg-footer {
+  width: 100%;
+  display: block;
+  position: fixed;
+  z-index: 2500;
+  bottom: 0;
+  background-color: $sg-color-light-grey;
+  font-size: 0.75rem;
+  box-shadow: 0 0 0.5rem white;
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.5em 1.5em;
+    max-width: 100% !important;
+    li {
+      margin-right: 1em;
+      &:last-child {
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: $sg-breakpoint-mid) {
+    position: relative;
+    ul {
+      flex-direction: column;
+      padding: 1.5em;
+      li, li:last-child {
+        margin-bottom: 0.75em;
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+.novo-colour-style-red {
+  background-color: $sg-iris-ui-red-background;
+  border-color: $sg-iris-ui-red-graphic;
+}
+.novo-colour-style-blue {
+  background-color: $sg-iris-ui-blue-background;
+  border-color: $sg-iris-ui-blue-graphic;
+}
+.novo-colour-style-grey {
+  background-color: $sg-iris-ui-grey-background;
+  border-color: $sg-iris-ui-grey-graphic;
+}
+.novo-colour-style-orange {
+  background-color: $sg-iris-ui-orange-background;
+  border-color: $sg-iris-ui-orange-graphic;
+}
+.novo-colour-style-teal {
+  background-color: $sg-iris-ui-teal-background;
+  border-color: $sg-iris-ui-teal-graphic;
+}
+.novo-colour-style-purple {
+  background-color: $sg-iris-ui-purple-background;
+  border-color: $sg-iris-ui-purple-graphic;
+}
+.novo-colour-style-green {
+  background-color: $sg-iris-ui-green-background;
+  border-color: $sg-iris-ui-green-graphic;
+}
+.novo-colour-style-yellow {
+  background-color: $sg-iris-ui-yellow-background;
+  border-color: $sg-iris-ui-yellow-graphic;
+}
+
+
+.novo-event-red:before {
+  @extend .novo-colour-style-red;
+}
+.novo-event-blue:before {
+  @extend .novo-colour-style-blue;
+}
+.novo-event-grey:before {
+  @extend .novo-colour-style-grey;
+}
+.novo-event-orange:before {
+  @extend .novo-colour-style-orange;
+}
+.novo-event-teal:before {
+  @extend .novo-colour-style-teal;
+}
+.novo-event-purple:before {
+  @extend .novo-colour-style-purple;
+}
+.novo-event-green:before {
+  @extend .novo-colour-style-green;
+}
+.novo-event-yellow:before {
+  @extend .novo-colour-style-yellow;
+}
+
+.novo-event-approved:before {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.novo-event-slug {
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: bottom;
+    width: 2em;
+    height: 1.5em;
+    border-radius: 0.75em;
+    margin-right: 0.5em;
+  }
+}
+
+.novo-calendar-colour-picker-list {
+  list-style-type: none;
+  padding-left: 0;
+  li {
+    position: relative;
+  }
+  .novo-calendar-colour-picker-item-event {
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
+}

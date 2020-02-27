@@ -1,0 +1,23 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* AVATAR */
+
+.sg-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 1px solid $sg-color-border;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  overflow: hidden;
+  background-color: white;
+  background-image: url(/assets/iris-ui-icons/iris-ui-icon-person-positive.svg);
+  line-height: 0;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+    width: auto;
+    height: 100%;
+  }
+}

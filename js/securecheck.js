@@ -351,10 +351,9 @@ function decodeToken(token) {
 }
 
 // Call the /token endpoint of the Identity Provider to retrieve tokens
-function exchangeCodeForToken(code, callback) {
+function exchangeCodeForToken(code, clientId, redirectUri, validator, callback) {
 
     try {
-
         var request = new XMLHttpRequest();
         request.open('POST', identityProvider + '/oauth2/token');
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -365,7 +364,7 @@ function exchangeCodeForToken(code, callback) {
             'client_id': clientId,
             'redirect_uri': redirectUri,
             code: code,
-            code_verifier: sessionStorage.getItem("validator")
+            code_verifier: validator
         };
 
         var formBody = [];

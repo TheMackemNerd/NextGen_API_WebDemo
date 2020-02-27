@@ -1,0 +1,59 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* HYPERLINKS */
+
+
+a.sg-link,
+button.sg-link,
+.sg-link {
+  font-family: $sg-font-family-text;
+	color: $sg-color-link;
+	text-decoration: none;
+	border: 0;
+  border-bottom: 1px dotted $sg-color-link;
+	font-weight: 400;
+  outline: 0;
+  padding: 0;
+	cursor: pointer;
+  background: transparent;
+  transition: box-shadow 0s, background-color 0s;
+  box-shadow: 0 0 0 0 $sg-color-link;
+  border-radius: 0.3px;
+	&:hover,&:focus {
+		outline: 0;
+		color: white;
+		background-color: $sg-color-link;
+		box-shadow: 0 0 0 0.2em $sg-color-link;
+    transition: box-shadow 0.1s;
+	}
+	&.brand {
+		color: $sg-color-cascade-primary;
+		border-bottom-color: $sg-color-cascade-primary;
+	}
+}
+
+a.sg-link-negative,
+button.sg-link-negative,
+.sg-link-negative {
+	@extend .sg-link;
+	color: white;
+	border-bottom: 1px dotted white;
+  box-shadow: 0 0 0 0 white;
+	&:hover,&:focus {
+		color: $sg-color-link;
+		background-color: white;
+		box-shadow: 0 0 0 0.2em white;
+	}
+}
+
+a.sg-link-warning,
+button.sg-link-warning,
+.sg-link-warning {
+  @extend .sg-link;
+  color: $sg-color-warning;
+  border-bottom-color: $sg-color-warning;
+  box-shadow: 0 0 0 0 $sg-color-warning;
+  &:hover, &:focus {
+    background-color: $sg-color-warning;
+    box-shadow: 0 0 0 0.2em $sg-color-warning;
+  }
+}

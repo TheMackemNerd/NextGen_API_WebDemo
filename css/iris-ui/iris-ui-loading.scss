@@ -1,0 +1,40 @@
+.sg-loading {
+  display: flex;
+  /*
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  */
+  @keyframes sg-loading-progression {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    33% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+  }
+  &:after {
+    content: "";
+    display: inline-block;
+    opacity: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: $sg-color-dark-grey;
+    animation-name: sg-loading-progression;
+    animation-delay: 1s;
+    animation-timing-function: ease-in-out();
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}

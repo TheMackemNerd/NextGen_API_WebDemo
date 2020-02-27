@@ -1,0 +1,28 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* VALIDATION AND NOTIFICATION */
+
+.sg-notification {
+  width: 100%;
+  max-width: 18rem;
+  p {
+    margin: 0;
+  }
+}
+
+.sg-notice {
+  font-style: italic;
+  width: 22em;
+  &:before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    vertical-align: text-bottom;
+    height: 1.4em;
+    width: 1.4rem;
+    margin-right: 0.5em;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(/assets/iris-ui-icons/iris-ui-icon-alert-notice.svg);
+  }
+}

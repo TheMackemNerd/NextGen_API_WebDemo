@@ -1,0 +1,71 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* BODY AND MAIN CONTENT AREA */
+
+
+/* BODY AREA */
+
+/* Set the base font size */
+body, html {
+  font-size: $sg-base-size-normal;
+  @media screen and (max-width: $sg-breakpoint-mid) {
+    font-size: $sg-base-size-mobile;
+  }
+}
+
+.sg-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  font-family: $sg-font-family-text;
+  line-height: 1.8;
+  transition: padding-top 0 linear $sg-speed;
+  @media screen and (max-width: $sg-header-breakpoint) {
+    padding-top: $sg-header-height-narrow + $sg-header-stripe-width;
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+    padding-top: $sg-header-height-wide + $sg-header-stripe-width;
+  }
+}
+.sg-body-has-toolbar {
+  @media screen and (max-width: $sg-header-breakpoint) {
+    padding-top: $sg-header-height-narrow + $sg-header-stripe-width + $sg-header-height-wide;
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+    padding-top: $sg-header-height-wide + $sg-header-stripe-width + $sg-header-height-wide;
+  }
+}
+.sg-body-cascade {
+  @extend .sg-body;
+  min-width: 1300px; //forces the app to desktop scaling
+}
+
+
+/* MAIN CONTENT AREA */
+
+.sg-main {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 8vh 2rem;
+  transition: padding 0.2s;
+  @media screen and (max-width: $sg-breakpoint-mid) {
+    padding: 4vh 2rem;
+  }
+}
+.sg-main-wide {
+  @extend .sg-main;
+  max-width: 1900px;
+}
+.sg-body-cascade {
+  .sg-main {
+    @extend .sg-main;
+    margin-left: 0;
+    padding: 3rem 3rem 10rem 3rem;
+  }
+}
+
+
+
+

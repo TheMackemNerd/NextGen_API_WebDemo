@@ -1,0 +1,95 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* SIDEBAR MENU */
+
+.sg-sidebar {
+  background-color: white;
+  padding: 0;
+  width: $sg-sidebar-width;
+  min-width: $sg-sidebar-width;
+  max-width: $sg-sidebar-width;
+  font-size: 0.875rem;
+  border-right: 1px solid $sg-color-border;
+  flex-grow: 0;
+  #cascade-sidebar-search {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    padding: 1rem;
+    background-color: $sg-color-light-grey;
+    min-width: unset;
+    .sg-input-button-wrapper {
+      width: 100%;
+    }
+    input.sg-input[type="search"] {
+      width: auto;
+      max-width: 100%;
+      min-width: unset;
+      font-size: 0.875rem;
+      flex-grow: 1;
+    }
+  }
+  h2 {
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid $sg-color-border;
+    background-color: $sg-color-light-grey;
+
+    button.sg-sidebar-section-button {
+      display: block;
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      margin: 0;
+      border: none;
+      outline: none;
+      &:after {
+        content: "";
+        width: 1em;
+        height: 1em;
+        background-image: url(/assets/iris-ui-icons/iris-ui-icon-chevron-down-positive.svg);
+        background-size: contain;
+        background-position: center center;
+      }
+      &:hover,&:focus {
+        background-color: $sg-color-link;
+        color: white;
+        &:after {
+          background-image: url(/assets/iris-ui-icons/iris-ui-icon-chevron-down-negative.svg);
+        }
+      }
+    }
+  }
+  .sg-sidebar-menu-section {
+    &:not(.open) {
+      @include sr-only;
+      opacity: 0;
+    }
+    transition:opacity $sg-speed $sg-speed;
+    h3 {
+      padding: 0.15rem 1rem;
+      font-size: 0.875rem;
+      margin: 0;
+    }
+    p {
+      padding: 0.25rem 1rem;
+      font-style: italic;
+    }
+    ul {
+      padding: 0.5em 0 0 0;
+      margin: 0 0 1rem 0;
+
+      li {
+        @extend .sg-menu-item-focus-self;
+        background-color: transparent;
+        border: none;
+        a {
+          padding: 0.15rem 1rem;
+        }
+      }
+    }
+  }
+}

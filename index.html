@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/guide.css?v=325">
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/iris-ui.css?v-234">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700&display=swap" rel="stylesheet" />
+
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.browser.min.js"></script>
@@ -24,72 +29,154 @@
 
     <script>
         try {
-            isSecure();
+            //isSecure();
         }
         catch (e) {
             window.location.replace("error.html?errordesc=" + encodeURIComponent(e));
         }
-      
+
     </script>
-    </head>
-    <body>
-        <div id="page">
-            <nav class="fh5co-nav" role="navigation">
-                <div class="top-menu">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <div id="fh5co-logo"><a href="index.html"><img src="images/kf-dark.png" alt="KFP Logo" /></a></div>
-                            </div>
-                            <div class="col-xs-10 text-right menu-1">
-                                <ul>
-                                    <li class="btn-cta"><span class="btn btn-secondary" id="username"></span></li>
-                                    <li class="btn-cta"><span class="btn btn-tenant" id="tenant"></span></li>
-                                    <li class="btn-cta"><a href="logout.html"><span>Logout</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+</head>
+<body>
 
-                    </div>
-                </div>
-            </nav>
+    <a href="#main" class="sg-skip-to-content">Tap Enter to skip to main content</a>
 
-            <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                            <h2>Next Gen Payroll Logged-In Area</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%"><a class="btn btn-primary btn-lg btn-demo" href="mfa.html">My MFA Status</a></td>
-                                    <td width="50%"><a class="btn btn-primary btn-lg btn-demo" href="invite.html">Invite Users</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?tenant=1">Pull Data from my Tenant</a></td>
-                                    <td><a class="btn btn-primary btn-lg btn-demo" href="datapull.html?tenant=2">Pull Data from a different Tenant</a></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </header>
+    <header class="sg-header">
+        <nav>
+            <ul>
+                <li class="sg-header-company">
+                    <a href="/" aria-label="Go to the homepage" title="Homepage">
+                        <img src="images/iris-logo-white.png" alt="IRIS">
+                    </a>
+                </li>
+                <li class="sg-header-sections open-toggle">
+                    <button type="button" class="sg-header-menu-button" aria-label="Open main menu"></button>
+                    <ul>
+                        <li><a href="/logout.html">Logout</a></li>
+                    </ul>
+                </li>
+
+                <!--
+                        <li class="sg-header-user open-toggle">
+                        <button type="button" class="sg-header-menu-button" aria-label="Open options menu"></button>
+                        <ul class="sg-menu-top-right">
+                          <li class="sg-menu-item-focus-self"><a href="/auth-login">Log out</a></li>
+                        </ul>
+                      </li>
+                -->
+
+            </ul>
+        </nav>
+        <span class="sg-header-stripe"></span>
+    </header>
+
+    <main class="sg-main" id="main">
+
+        <div class="sg-hgroup">
+            <h1 class="sg-h1" id="username"></h1>
+            <p class="sg-text" id="tenant"></p>
+
         </div>
 
-        <script>
-            try {
-                setUserName();
-                setTenant();
-            }
-            catch (e) {
-                console.log("Page Generation Error: " + e);
-            }
+        <div class="content">
 
-        </script>
+            <div class="sg-panel-group">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                      <h1>Authorisation URL Builder</h1>
+                      <table width="100%">
+                          <tr>
+                              <td width="25%"><label class="sg-label" for="txtIdp">Identity Provider</label></td>
+                              <td width="75%"><input type="text" class="sg-input sg-input-large" size="70" id="txtIdp" value="https://hcm-hub-rnd.auth.eu-west-1.amazoncognito.com" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtAuthPath">Authorize Path</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtAuthPath" value="oauth2/authorize" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtResponseType">Response Type</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtResponseType" value="code" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtClientId">Client ID</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtClientId" value="57vo0lcv2gq0822td26v9nhnh6" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtCallback">Callback URI</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtCallback" value="https://ec2-34-255-217-86.eu-west-1.compute.amazonaws.com/callback.html" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtState">State</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtState"  onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtCodeChallengeMethod">PKCE Challenge Method</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtCodeChallengeMethod" value="S256" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtCodeValidator">PKCE Validator</label></td>
+                              <td><input type="text" class="sg-input sg-input-large" size="70" id="txtCodeValidator" onchange="buildUrl();" /></td>
+                          </tr>
+                          <tr>
+                              <td>&nbsp;</td>
+                              <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                              <td><label class="sg-label" for="txtURL">URL</label></td>
+                              <td><textarea id="txtURL" class="sg-textarea" rows="7"></textarea></td>
+                          </tr>
+                      </table>
+                    </div>
+                </div>
 
-    </body>
+            </div>
+
+        </div>
+
+</main>
+
+    <footer id="version" role="contentinfo" class="sg-footer">
+        <ul>
+            <li>Version 2.0</li>
+        </ul>
+    </footer>
+
+    <script>
+        try {
+
+            var state = generateOpaqueString(30);
+            document.getElementById("txtState").value = state;
+
+
+            var validator = generateOpaqueString(50);
+            document.getElementById("txtCodeValidator").value = validator;
+
+            buildUrl();
+        }
+        catch (e) {
+            console.log("Page Generation Error: " + e);
+        }
+
+        async function buildUrl() {
+
+            var state = document.getElementById("txtState").value;
+            sessionStorage.setItem("state", state);
+            sessionStorage.setItem("clientId", document.getElementById("txtClientId").value);
+            sessionStorage.setItem("idp", document.getElementById("txtIdp").value);
+            sessionStorage.setItem("callbackUri", document.getElementById("txtCallback").value);
+
+            var validator = document.getElementById("txtCodeValidator").value;
+            sessionStorage.setItem("validator", validator);
+
+            var challenge = await createPKCEChallenge(validator);
+
+            var str = document.getElementById("txtIdp").value + "/" + document.getElementById("txtAuthPath").value  + "?response_type=" + document.getElementById("txtResponseType").value + "&client_id=" + document.getElementById("txtClientId").value + "&redirect_uri=" + encodeURIComponent(document.getElementById("txtCallback").value) + "&state=" + encodeURIComponent(document.getElementById("txtState").value) + "&code_challenge_method=" + document.getElementById("txtCodeChallengeMethod").value + "&code_challenge=" + encodeURIComponent(challenge);
+            document.getElementById("txtURL").innerHTML = str;
+
+        }
+
+    </script>
+
+</body>
     </html>
 

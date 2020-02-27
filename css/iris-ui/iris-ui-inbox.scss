@@ -1,0 +1,35 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* INBOX */
+
+.sg-inbox {
+  ol {
+    display: block;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    list-style: none;
+    border: 1px solid $sg-color-border;
+    border-radius: $sg-radius;
+    li {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid $sg-color-border;
+      &:first-child {
+        padding-top: 1.25rem;
+      }
+      &:last-child {
+        padding-bottom: 1.25rem;
+        border-bottom: none;
+      }
+      p {
+        margin: 0;
+      }
+      time {
+        margin-left: 1rem;
+        font-style: italic;
+      }
+    }
+  }
+}

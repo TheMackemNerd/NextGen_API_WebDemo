@@ -1,0 +1,53 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* OVERLAYS */
+
+.sg-overlay {
+	display: none;
+	position: absolute;
+	z-index: 100000;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: auto;
+	transition: display $sg-speed;
+	&:before,
+	span.tinting {
+		content: "";
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: $sg-color-light-grey;
+	}
+	&.sg-overlay-clear {
+		&:before {
+			display: none;
+		}
+		span.tinting {
+			background-color: rgba(250,250,250,0.8);
+			&:hover,&:focus,&:active {
+				border: none;
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+.sg-overlay-content {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 74rem;
+  margin: 10vh auto;
+  background-color: white;
+  padding: 2rem;
+  color: $sg-color-text;
+	border-radius: $sg-radius;
+	&-narrow {
+		@extend .sg-overlay-content;
+		max-width: 43rem;
+	}
+}

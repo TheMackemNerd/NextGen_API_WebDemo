@@ -1,0 +1,192 @@
+// Styles
+
+$daysize: 3rem;
+
+.sg-calendar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.sg-calendar-month {
+  border-collapse: collapse;
+  box-sizing: border-box;
+  flex-grow: 1;
+  margin: 0 3rem 3rem 0;
+  min-width: calc(33.3% - 4.5rem);
+
+  &:nth-child(3n+3) {
+    margin-right: 0;
+  }
+
+  caption {
+    font-weight: 400;
+    margin: 0 0 1.5em 0;
+  }
+
+  th {
+    height: $daysize;
+    width: $daysize;
+    min-width: $daysize * 0.6;
+    font-weight: 400;
+    font-size: 0.875rem;
+  }
+
+  .sg-calendar-day-number {
+    z-index: 400;
+    position: relative;
+    display: inline-block;
+    width: $daysize * 0.5;
+    height: $daysize * 0.5;
+    line-height: $daysize * 0.5;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  .sg-calendar-day-number-offset-up {
+    top: -($daysize * 0.1);
+  }
+  .sg-calendar-day-number-offset-down {
+    top: ($daysize * 0.1);
+  }
+
+  .sg-calendar-day {
+    box-sizing: content-box;
+    position: relative;
+    height: $daysize;
+    width: $daysize;
+    min-width: $daysize * 0.6;
+    padding: 0;
+    text-align: center;
+
+    &:not(.sg-calendar-day-other) {
+      &:before {
+        content: "";
+        z-index: 301;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $sg-color-link;
+        border-radius: $daysize * 0.1;
+        opacity: 0;
+      }
+      &:hover, &:focus {
+        outline: none;
+        &:before {
+          opacity: 1;
+        }
+        cursor: pointer;
+        .sg-calendar-day-number {
+          top: 0;
+          color: white;
+          border-color: transparent;
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+
+.sg-calendar-day-other {
+  color: $sg-color-disabled;
+}
+
+.sg-calendar-day-today {
+  border-radius: 50%;
+  background-color: $sg-color-link;
+  font-size: 6.875rem;
+  color: white;
+}
+
+.sg-calendar-day-public-holiday {
+  border-radius: 50%;
+  border: 1px solid $sg-color-border;
+  background-color: white;
+  font-size: 6.875rem;
+}
+.sg-calendar-day-payday {
+  //TODO this needs improving, italic isn't obvious enought, bold is too strong, underline is ugly and crashes with the border on bank holidays. More design invesigation to do before this one's ready to ship. cf
+  font-style: italic;
+}
+
+.sg-calendar-event {
+  box-sizing: border-box;
+  z-index: 100;
+  width: 100% * 3;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+  &:before {
+    content: "";
+    display: block;
+    position: relative;
+    height: $daysize * 0.6;
+    margin: 0;
+    width: 100%;
+    border-radius: $daysize * 0.3;
+    background-color: $sg-iris-ui-grey-background;
+    border: 1px solid $sg-iris-ui-grey-graphic;
+  }
+}
+
+.sg-calendar-event-offset-up:before {
+  top: -($daysize * 0.1);
+}
+.sg-calendar-event-offset-down:before {
+  top: ($daysize * 0.1);
+}
+
+.sg-calendar-event-length-1 { @extend .sg-calendar-event; width: 100% * 1; }
+.sg-calendar-event-length-2 { @extend .sg-calendar-event; width: 100% * 2; }
+.sg-calendar-event-length-3 { @extend .sg-calendar-event; width: 100% * 3; }
+.sg-calendar-event-length-4 { @extend .sg-calendar-event; width: 100% * 4; }
+.sg-calendar-event-length-5 { @extend .sg-calendar-event; width: 100% * 5; }
+.sg-calendar-event-length-6 { @extend .sg-calendar-event; width: 100% * 6; }
+.sg-calendar-event-length-7 { @extend .sg-calendar-event; width: 100% * 7; }
+.sg-calendar-event-length-8 { @extend .sg-calendar-event; width: 100% * 8; }
+.sg-calendar-event-length-9 { @extend .sg-calendar-event; width: 100% * 9; }
+.sg-calendar-event-length-10 { @extend .sg-calendar-event; width: 100% * 10; }
+.sg-calendar-event-length-11 { @extend .sg-calendar-event; width: 100% * 11; }
+.sg-calendar-event-length-12 { @extend .sg-calendar-event; width: 100% * 12; }
+.sg-calendar-event-length-13 { @extend .sg-calendar-event; width: 100% * 13; }
+.sg-calendar-event-length-14 { @extend .sg-calendar-event; width: 100% * 14; }
+.sg-calendar-event-length-15 { @extend .sg-calendar-event; width: 100% * 15; }
+.sg-calendar-event-length-16 { @extend .sg-calendar-event; width: 100% * 16; }
+.sg-calendar-event-length-17 { @extend .sg-calendar-event; width: 100% * 17; }
+.sg-calendar-event-length-18 { @extend .sg-calendar-event; width: 100% * 18; }
+.sg-calendar-event-length-19 { @extend .sg-calendar-event; width: 100% * 19; }
+.sg-calendar-event-length-20 { @extend .sg-calendar-event; width: 100% * 20; }
+
+.sg-calendar-day-menu {
+  &:not(.open) {
+    display: none;
+  }
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 0;
+  text-align: left;
+}
+.sg-calendar-day-menu-event {
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: bottom;
+    width: 2em;
+    height: 1.5em;
+    border-radius: 0.75em;
+    border-width: 1px;
+    border-style: solid;
+    margin-right: 0.5em;
+  }
+}
+

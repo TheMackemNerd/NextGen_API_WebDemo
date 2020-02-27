@@ -1,0 +1,91 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* COLOURS */
+
+@mixin sg-graphic-color ($b,$g) {
+  border-color: $b;
+  background-color: $g;
+  border-style: solid;
+  border-width: 1px;
+  color: $sg-color-text;
+}
+.sg-graphic-red {
+  @include sg-graphic-color($sg-iris-ui-red-graphic, $sg-iris-ui-red-background);
+}
+.sg-graphic-blue {
+  @include sg-graphic-color($sg-iris-ui-blue-graphic, $sg-iris-ui-blue-background);
+}
+.sg-graphic-grey {
+  @include sg-graphic-color($sg-iris-ui-grey-graphic, $sg-iris-ui-grey-background);
+}
+.sg-graphic-orange {
+  @include sg-graphic-color($sg-iris-ui-orange-graphic, $sg-iris-ui-orange-background);
+}
+.sg-graphic-teal {
+  @include sg-graphic-color($sg-iris-ui-teal-graphic, $sg-iris-ui-teal-background);
+}
+.sg-graphic-purple {
+  @include sg-graphic-color($sg-iris-ui-purple-graphic, $sg-iris-ui-purple-background);
+}
+.sg-graphic-green {
+  @include sg-graphic-color($sg-iris-ui-green-graphic, $sg-iris-ui-green-background);
+}
+.sg-graphic-yellow {
+  @include sg-graphic-color($sg-iris-ui-yellow-graphic, $sg-iris-ui-yellow-background);
+}
+
+.sg-red-background { background-color: $sg-iris-ui-red-background; }
+.sg-blue-background { background-color: $sg-iris-ui-blue-background; }
+.sg-grey-background { background-color: $sg-iris-ui-grey-background; }
+.sg-orange-background { background-color: $sg-iris-ui-orange-background; }
+.sg-teal-background { background-color: $sg-iris-ui-teal-background; }
+.sg-purple-background { background-color: $sg-iris-ui-purple-background; }
+.sg-green-background { background-color: $sg-iris-ui-green-background; }
+.sg-yellow-background { background-color: $sg-iris-ui-yellow-background; }
+
+.sg-colour-coding-lozenge {
+  height: 1em;
+  width: 1.5em;
+  border-radius: 0.5em;
+  border-width: 1px;
+  border-style: solid;
+}
+.sg-colour-coding-lozenge-grey {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-grey-background;
+  border-color: $sg-iris-ui-grey-graphic;
+}
+.sg-colour-coding-lozenge-yellow {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-yellow-background;
+  border-color: $sg-iris-ui-yellow-graphic;
+}
+.sg-colour-coding-lozenge-lime {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-green-background;
+  border-color: $sg-iris-ui-green-graphic;
+}
+.sg-colour-coding-lozenge-orange {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-orange-background;
+  border-color: $sg-iris-ui-orange-graphic;
+}
+.sg-colour-coding-lozenge-teal {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-teal-background;
+  border-color: $sg-iris-ui-teal-graphic;
+}
+.sg-colour-coding-lozenge-blue {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-blue-background;
+  border-color: $sg-iris-ui-blue-graphic;
+}
+.sg-colour-coding-lozenge-purple {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-purple-background;
+  border-color: $sg-iris-ui-purple-graphic;
+}
+.sg-colour-coding-lozenge-pink {
+  @extend .sg-colour-coding-lozenge;
+  background-color: $sg-iris-ui-red-background;
+  border-color: $sg-iris-ui-red-graphic;
+}

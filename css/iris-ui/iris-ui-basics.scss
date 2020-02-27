@@ -1,0 +1,36 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* BASICS */
+
+.sg-border {
+  border: 1px solid $sg-color-border;
+}
+
+.sg-dark {
+  background-color: $sg-color-dark-grey;
+  color: white;
+  border: none;
+  a {
+    color: white;
+  }
+}
+
+.sg-light {
+  background-color: $sg-color-light-grey;
+}
+
+.sg-warning {
+  background-color: $sg-color-warning;
+}
+.sg-text-warning {
+  color: $sg-color-warning;
+}
+
+.sg-left {
+  text-align: left;
+}
+.sg-center {
+  text-align: center;
+}
+.sg-right {
+  text-align: right;
+}

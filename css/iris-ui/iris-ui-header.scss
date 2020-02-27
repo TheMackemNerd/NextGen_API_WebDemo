@@ -1,0 +1,348 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* HEADER */
+
+.sg-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  z-index: 22000;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 0 3rem rgba(250,250,250,0.2);
+  background-color: $sg-color-dark-grey;
+  & > nav {
+    transition: height $sg-speed;
+    height: 100%;
+    & > ul {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: none !important; //for the style guide
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-family: $sg-font-family-text;
+      font-size: 0.875rem;
+    }
+  }
+  transition: height $sg-speed;
+  @media screen and (max-width: $sg-header-breakpoint) {
+    height: $sg-header-height-narrow;
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+    height: $sg-header-height-wide;
+  }
+}
+
+.sg-header-stripe {
+  content: "";
+  display: block;
+  position: relative;
+  width: 100%;
+  height: $sg-header-stripe-width;
+  background-color: $sg-iris-brand-blue-solid;
+}
+
+.sg-skip-to-content {
+  &:not(:focus) {
+    @include sr-only;
+  }
+  &:focus {
+    position: fixed;
+    display: block;
+    z-index: 23000;
+    width: 100%;
+    top: 0;
+    left: 0;
+    outline: none;
+    border: none;
+    background-color: $sg-color-dark-grey;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    line-height: 0;
+    transition: padding $sg-speed, height $sg-speed;
+    @media screen and (max-width: $sg-header-breakpoint) {
+      height: $sg-header-height-narrow;
+      padding: $sg-header-height-narrow/2 1rem;
+    }
+    @media screen and (min-width: $sg-header-breakpoint + 1px) {
+      height: $sg-header-height-wide;
+      padding: $sg-header-height-wide/2 1rem;
+    }
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+//The company logo section:
+li.sg-header-company {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  width: auto;
+  height: 100%;
+  background-color: $sg-color-dark-grey;
+  border-right: 1px solid white;
+
+  a, button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: padding $sg-speed, min-width $sg-speed;
+
+    @media screen and (max-width: $sg-header-breakpoint) {
+      padding: 0.75rem 1.5rem;
+    }
+    @media screen and (min-width: $sg-header-breakpoint + 1px) {
+      padding: 1.25rem 1.25rem;
+    }
+
+    img {
+      display: block;
+      object-fit: contain;
+      width: auto;
+      max-width: 12rem;
+      height: auto;
+      transition: opacity $sg-speed, max-width $sg-speed, max-height $sg-speed;
+
+      @media screen and (max-width: $sg-header-breakpoint) {
+        max-height: $sg-header-height-narrow - 1.5rem;
+      }
+      @media screen and (min-width: $sg-header-breakpoint + 1px) {
+        max-height: $sg-header-height-wide - 2.5rem;
+      }
+    }
+    &:hover,&:focus {
+      img {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+//The section with a select-menu-like button:
+li.sg-header-select {
+  align-self: center;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 0.5rem;
+  position: relative;
+  .sg-custom-select-group > button {
+    position: relative;
+    margin: 0;
+  }
+  &:not(.open) {
+    & > ul {
+      @include sr-only;
+      opacity: 0;
+    }
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+  }
+}
+
+
+//The section with full height buttons (collapses into burger menu):
+li.sg-header-sections {
+  @media screen and (max-width: $sg-header-breakpoint) {
+    display: flex;
+    align-items: center;
+    .sg-header-menu-button {
+      display: block;
+      position: relative;
+      height: 1.6rem;
+      width: 1.6rem;
+      border-radius: 50%;
+      margin: 0 0.75em;
+      border: none;
+      outline: none;
+      background-color: $sg-color-dark-grey;
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-burger-negative.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      box-shadow: 0 0 0 white;
+      cursor: pointer;
+      transition: box-shadow $sg-speed-fast, background-color $sg-speed-fast;
+      &:hover,&:focus {
+        color: $sg-color-link;
+        box-shadow: 0 0 0 0.1em $sg-color-dark-grey, 0 0 0 calc(0.1em + 1px) white;
+        transition: box-shadow $sg-speed;
+      }
+    }
+    & > ul {
+      transition: opacity $sg-speed;
+    }
+    &:not(.open) {
+      & > ul {
+        @include sr-only;
+        top: $sg-header-height-narrow;
+        opacity: 0;
+      }
+    }
+    &.open {
+      & > ul {
+        @include sg-menu-top-left;
+        position: absolute;
+        top: $sg-header-height-narrow;
+        left: 0;
+        opacity: 1;
+        z-index: 24000;
+        li {
+          @include sg-menu-item-focus-self;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+    display: flex;
+    align-items: center;
+    $space: 1rem;
+    .sg-header-menu-button {
+      display: none;
+    }
+    &:focus {
+      outline: none;
+    }
+    & > ul {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      margin: 0 0 0 $space;
+      list-style-type: none;
+      padding: 0;
+      li {
+        & > a, & > button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          position: relative;
+          height: 100%;
+          border: none;
+          color: white;
+          text-decoration: none;
+          background: transparent;
+          padding-left: $space;
+          padding-right: $space;
+          transition: background-color $sg-speed;
+          &:hover, &:focus {
+            outline: none;
+            background-color: white;
+            color: $sg-color-text;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//The section about the user with popout menu:
+li.sg-header-user {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-left: auto;
+  z-index: 1000000;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    border: none;
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    .sg-header-user-name {
+      transition: opacity $sg-speed;
+      font-weight: 600;
+    }
+    .sg-avatar {
+//      @include avatar(2.5rem,'dark');
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-left: 0.75em;
+      transition: opacity $sg-speed;
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: relative;
+      height: 1.6rem;
+      width: 1.6rem;
+      margin: 0 1.5em 0 1em;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      background-color: $sg-color-dark-grey;
+      background-image: url(/assets/iris-ui-icons/iris-ui-icon-burger-ellipsis-negative.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      box-shadow: 0 0 0 white;
+      transition: box-shadow $sg-speed-fast, background-color $sg-speed-fast, margin $sg-speed;
+    }
+    &:hover,&:focus,&:active {
+      outline: none;
+      &:after {
+        color: $sg-color-link;
+        box-shadow: 0 0 0 0.1em $sg-color-dark-grey, 0 0 0 calc(0.1em + 1px) white;
+        transition: box-shadow $sg-speed;
+      }
+    }
+  }
+  & > ul.sg-menu-top-right {
+    transition: opacity $sg-speed, top $sg-speed;
+  }
+  &:not(.open) {
+    & > ul.sg-menu-top-right {
+      @include sr-only;
+      opacity: 0;
+    }
+  }
+  &.open {
+    & > ul.sg-menu-top-right {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+    }
+  }
+  @media screen and (max-width: $sg-header-breakpoint) {
+    button {
+      &:after {
+        margin: 0 1em 0 0.5em;
+      }
+      .sg-header-avatar {
+        display: none;
+      }
+    }
+    & > ul.sg-menu-top-right,
+    &:not(.open) > ul.sg-menu-top-right {
+      top: $sg-header-height-narrow;
+    }
+  }
+  @media screen and (min-width: $sg-header-breakpoint + 1px) {
+    & > ul.sg-menu-top-right,
+    &:not(.open) > ul.sg-menu-top-right {
+      top: $sg-header-height-wide;
+    }
+  }
+}

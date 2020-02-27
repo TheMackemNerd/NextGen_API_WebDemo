@@ -1,0 +1,70 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* TABS */
+
+.sg-tab-group {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 1rem 0;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid $sg-color-border;
+  list-style-type: none;
+  overflow: hidden;
+  font-size: 0;
+  li {
+    font-size: 1rem;
+    padding: 0.35em 0.35em 0 0.35em;
+    overflow: hidden;
+  }
+}
+
+.sg-tab {
+  @extend .sg-btn-secondary;
+  &[aria-current="true"] {
+    &,&:hover,&:focus {
+      color: white;
+      background-color: $sg-color-dark-grey;
+      box-shadow: 0 0 0 0 white, 0 0 0 1px $sg-color-dark-grey;
+      border-color: $sg-color-dark-grey;
+    }
+  }
+  &, &:disabled {
+    margin: 0;
+    text-overflow: inherit;
+    word-wrap: normal;
+    border-bottom: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+a, button {
+  & > .sg-tooltip {
+    opacity: 0;
+    left: 200vw;
+    top: -100vh;
+    display: block;
+    position: absolute;
+    z-index: 10000;
+    padding: 0.5rem 1rem;
+    border-radius: $sg-radius-small;
+    box-shadow: $sg-tooltip-box-shadow;
+    background-color: white;
+    color: $sg-color-text;
+    font-weight: 400;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.5;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  &:hover,&:focus {
+    & > .sg-tooltip {
+      opacity: 1;
+      position: fixed;
+      transition: opacity $sg-speed 1s;
+    }
+  }
+}

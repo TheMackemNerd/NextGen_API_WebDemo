@@ -1,0 +1,119 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* TABLES */
+
+.sg-table-cell {
+  padding: 0.5em;
+  font-size: 0.875rem;
+  text-align: left;
+  white-space: nowrap;
+  &.sg-table-column-wrappable {
+    white-space: normal;
+    min-width: 8rem;
+  }
+  &.sg-table-column-center {
+    text-align: center;
+  }
+  &.sg-table-column-button {
+    width: 5em;
+  }
+  &.sg-table-column-small {
+    width: 10em;
+  }
+  &.sg-table-column-medium {
+    width: 15em;
+  }
+  &.sg-table-column-wide {
+    width: 100%;
+  }
+}
+
+.sg-table-header-cell {
+  @extend .sg-table-cell;
+  font-style: italic;
+  font-weight: normal;
+  border-bottom: 1px solid $sg-color-border;
+}
+
+.sg-table-row {
+  vertical-align: top;
+  background-color: white;
+  th, td {
+    @extend .sg-table-cell;
+  }
+  &:not(:last-child) {
+    td {
+      border-bottom: 1px solid $sg-color-border;
+    }
+  }
+  &:first-child {
+    th, td {
+      padding-top: 1.5em;
+    }
+  }
+  &:last-child {
+    th, td {
+      padding-bottom: 1.5em;
+    }
+  }
+  th, td {
+    &:first-child {
+      padding-left: 1.5em;
+    }
+  }
+  th, td {
+    &:last-child {
+      padding-right: 1.5em;
+    }
+  }
+}
+
+.sg-table thead tr,
+.sg-table-header-row {
+  @extend .sg-table-row;
+  background-color: $sg-color-light-grey;
+  th {
+    @extend .sg-table-header-cell;
+    padding-bottom: 0.75em;
+  }
+}
+
+.sg-table-wrap {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.sg-table {
+  border-collapse: separate;
+  border: 1px solid $sg-color-border;
+  border-radius: $sg-radius;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  background-color: white;
+  font-size: 0.875rem;
+  text-align: left;
+  tr {
+    @extend .sg-table-row;
+    th {
+      padding-bottom: 0.75em;
+    }
+  }
+}
+
+.sg-table-large {
+  @extend .sg-table;
+  tr {
+    th {
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+      font-size: 1rem;
+    }
+    td {
+      padding: 0.75em;
+      font-size: 1rem;
+    }
+  }
+}
+
+

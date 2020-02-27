@@ -1,0 +1,182 @@
+/* IRIS UI STYLE GUIDE 2019 */
+/* COLOUR PICKER PALETTE */
+
+.sg-colour-picker-palette {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+}
+
+.sg-colour-picker-palette-popout {
+  @extend .sg-colour-picker-palette;
+  display: inline-flex;
+  padding: 1rem;
+  border: 1px solid $sg-color-border;
+  border-radius: $sg-radius-small;
+  background-color: white;
+  box-shadow: $sg-tooltip-box-shadow;
+}
+
+.sg-colour-picker-palette-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 1rem 0 0;
+  &:last-child {
+    margin-right: 0;
+  }
+  label {
+    span {
+      @extend .sr-only;
+    }
+    &:before {
+      content: "";
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      margin: 0 auto;
+      transition: box-shadow $sg-speed;
+      border-width: 1px;
+      border-style: solid;
+      cursor: pointer;
+    }
+  }
+  input[type="radio"] {
+    @extend .sr-only;
+    top: unset;
+    &:checked ~ label:before {
+      transition: width $sg-speed, height $sg-speed;
+      width: 2rem;
+      height: 2rem;
+      border-width: 2px;
+    }
+  }
+
+  &-grey {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-grey-background;
+      border-color: $sg-iris-ui-grey-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    input[type="radio"]:focus ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-grey-graphic;
+      }
+    }
+  }
+
+  &-blue {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-blue-background;
+      border-color: $sg-iris-ui-blue-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-blue-graphic;
+      }
+    }
+  }
+
+  &-red {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-red-background;
+      border-color: $sg-iris-ui-red-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-red-graphic;
+      }
+    }
+  }
+
+  &-orange {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-orange-background;
+      border-color: $sg-iris-ui-orange-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-orange-graphic;
+      }
+    }
+  }
+
+  &-teal {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-teal-background;
+      border-color: $sg-iris-ui-teal-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-teal-graphic;
+      }
+    }
+  }
+
+  &-purple {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-purple-background;
+      border-color: $sg-iris-ui-purple-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-purple-graphic;
+      }
+    }
+  }
+
+  &-green {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-green-background;
+      border-color: $sg-iris-ui-green-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-green-graphic;
+      }
+    }
+  }
+
+  &-yellow {
+    @extend .sg-colour-picker-palette-item;
+    label:before {
+      background-color: $sg-iris-ui-yellow-background;
+      border-color: $sg-iris-ui-yellow-graphic;
+    }
+    input[type="radio"]:checked ~ label,
+    label {
+      &:hover:before,
+      &:focus:before {
+        box-shadow: 0 0 0 $focus-size $sg-iris-ui-yellow-graphic;
+      }
+    }
+  }
+
+}
