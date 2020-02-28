@@ -73,20 +73,8 @@
                         <h1>Secure Resource</h1>
                         <table width="100%">
                             <tr>
-                                <td width="25%"><label class="sg-label" for="txtKeyPath">Key Path</label></td>
-                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtKeyPath" value="https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_2DtCcoypN/.well-known/jwks.json" /></td>
-                            </tr>
-                            <tr>
-                                <td><label class="sg-label" for="txtAlg">Signature Alg</label></td>
-                                <td><input type="text" class="sg-input sg-input-large" size="90" id="txtAlg" /></td>
-                            </tr>
-                            <tr>
-                                <td><label class="sg-label" for="txtKid">Signature Kid</label></td>
-                                <td><input type="text" class="sg-input sg-input-large" size="90" id="txtKid" /></td>
-                            </tr>
-                            <tr>
-                                <td><label class="sg-label" for="txtSig">Signature</label></td>
-                                <td><textarea id="txtSig" class="sg-textarea" rows="4"></textarea></td>
+                                <td width="25%"><label class="sg-label" for="txtAPI">Backend API</label></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtAPI" value="http://ec2-34-254-224-164.eu-west-1.compute.amazonaws.com:3000/api/v1/helloworld" /></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -95,7 +83,7 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <button class="sg-btn-primary" id="btnKeys" onclick="getKeys();">Get Keys</button>
+                                    <button class="sg-btn-primary" id="btnAPI" onclick="callAPI();">Call API</button>
                                     <br />
                                     <div id="divKeyAlert" hidden="hidden">
                                         <span class="sg-notice" role="alert" id="spaKeyWarn"></span>
@@ -107,8 +95,12 @@
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
-                                <td><label class="sg-label" for="txtKeys">Keys</label></td>
-                                <td><textarea id="txtKeys" class="sg-textarea" rows="9"></textarea></td>
+                                <td><label class="sg-label" for="txtStatus">Response Status</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="90" id="txtStatus" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtResponse">API Response</label></td>
+                                <td><textarea id="txtResponse" class="sg-textarea" disabled="disabled" rows="7"></textarea></td>
                             </tr>
                         </table>
                     </div>
@@ -126,36 +118,53 @@
             document.getElementById("pnlIsLoggedOut").hidden = "hidden";
             document.getElementById("pnlIsLoggedIn").hidden = "";
 
-            var accesstoken = sessionStorage.getItem("accesstoken");
-            var jwt = decodeToken(accesstoken);
-            document.getElementById("txtAlg").value = jwt.header.alg;
-            document.getElementById("txtKid").value = jwt.header.kid;
-            document.getElementById("txtSig").value = accesstoken.split('.')[2];
-
         }
         else {
             document.getElementById("pnlIsLoggedOut").hidden = "";
             document.getElementById("pnlIsLoggedIn").hidden = "hidden";
         }
-        
 
-        function getKeys() {
 
-            callForKeys(function (result) {
-                document.getElementById("txtKeys").value = result;
+        function callAPI() {
+
+            callAPIasync(function (error, item) {
+
+                if (error) {
+                    document.getElementById("txtStatus").value = "FAIL";
+                    document.getElementById("txtResponse").value = error;
+                }
+                else {
+                    document.getElementById("txtStatus").value = "SUCCESS";
+                    document.getElementById("txtResponse").value = item;
+                }
+
             });
-
         }
 
-        async function callForKeys(callback) {
-            var request = new XMLHttpRequest();            
-            request.open('GET', document.getElementById("txtKeyPath").value);            
+
+        async function callAPIasync(callback) {
+
+            var accesstoken = sessionStorage.getItem("accesstoken");
+
+            var request = new XMLHttpRequest();
+            request.open('GET', document.getElementById("txtAPI").value);
+            request.setRequestHeader("Authorization", accesstoken);
+            request.setRequestHeader("Content-Type", "application/json");
+
             request.onload = function () {
-                var data = this.response;                
-                callback(data);
-            }
+                if (request.status != 200) {
+                    callback(err);
+                }
+                else {
+                    var data = this.response;
+                    callback(null, data);
+                }
+            };
+
             request.send();
+
         }
+
 
 
 
