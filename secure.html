@@ -74,7 +74,7 @@
                         <table width="100%">
                             <tr>
                                 <td width="25%"><label class="sg-label" for="txtAPI">Backend API</label></td>
-                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtAPI" value="http://ec2-34-254-224-164.eu-west-1.compute.amazonaws.com:3000/api/v1/helloworld" /></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtAPI" value="https://ec2-34-254-224-164.eu-west-1.compute.amazonaws.com:3000/api/v1/helloworld" /></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -146,22 +146,27 @@
 
             var accesstoken = sessionStorage.getItem("accesstoken");
 
-            var request = new XMLHttpRequest();
-            request.open('GET', document.getElementById("txtAPI").value);
-            request.setRequestHeader("Authorization", accesstoken);
-            request.setRequestHeader("Content-Type", "application/json");
 
-            request.onload = function () {
-                if (request.status != 200) {
-                    callback(err);
-                }
-                else {
-                    var data = this.response;
-                    callback(null, data);
-                }
-            };
+            var req = new Request(document.getElementById("txtAPI").value, {
+                method: 'get',
+                mode: 'cors',
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": accesstoken
+                }                
+              });
 
-            request.send();
+            fetch(req)
+                .then(function () {
+                    if (req.status != 200) {
+                        callback(err);
+                    }
+                    else {
+                        var data = this.response;
+                        callback(null, data);
+                    }
+                });
+
 
         }
 
