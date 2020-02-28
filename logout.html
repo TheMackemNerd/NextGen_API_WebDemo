@@ -91,7 +91,7 @@
     </main>
 
     <script>
-
+        
         if (sessionStorage.getItem("accesstoken") != null) {
 
             document.getElementById("pnlIsLoggedOut").hidden = "hidden";
@@ -105,6 +105,7 @@
             document.getElementById("pnlIsLoggedIn").hidden = "hidden";
         }
 
+        buildUrl();
 
         function buildUrl() {
 
