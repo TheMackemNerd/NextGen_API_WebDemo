@@ -42,51 +42,57 @@
         <span class="sg-header-stripe"></span>
     </header>
 
-    <div class="sg-panel-group" id="pnlIsLoggedOut" hidden="hidden">
-        <div class="sg-panel">
-            <div class="sg-panel-contents-light">
-                <h1>Logged Out</h1>
-            </div>
-        </div>
-    </div>
 
-    <div class="sg-panel-group" id="pnlIsLoggedIn">
-        <div class="sg-panel">
-            <div class="sg-panel-contents-light">
-                <h1>Logout</h1>
-                <table width="100%">
-                    <tr>
-                        <td width="25%"><label class="sg-label" for="txtIdp">Identity Provider</label></td>
-                        <td width="75%"><input type="text" class="sg-input sg-input-large" size="70" id="txtIdp" onchange="buildUrl();" /></td>
-                    </tr>
-                    <tr>
-                        <td><label class="sg-label" for="txtPath">Logout Path</label></td>
-                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtPath" value="logout" onchange="buildUrl();" /></td>
-                    </tr>
-                    <tr>
-                        <td><label class="sg-label" for="txtClientId">Client ID</label></td>
-                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtClientId" onchange="buildUrl();" /></td>
-                    </tr>
-                    <tr>
-                        <td><label class="sg-label" for="txtLogout">Logout URI</label></td>
-                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtLogout" onchange="buildUrl();" /></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td><label class="sg-label" for="txtURL">URL</label></td>
-                        <td><textarea id="txtURL" class="sg-textarea" rows="7"></textarea></td>
-                    </tr>
-                </table>
+    <main class="sg-main" id="main">
+
+        <div class="content">
+            <div class="sg-panel-group" id="pnlIsLoggedOut" hidden="hidden">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Logged Out</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-panel-group" id="pnlIsLoggedIn">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Logout</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtIdp">Identity Provider</label></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="70" id="txtIdp" onchange="buildUrl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtPath">Logout Path</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtPath" value="logout" onchange="buildUrl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtClientId">Client ID</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtClientId" onchange="buildUrl();" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtLogout">Logout URI</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="70" id="txtLogout" onchange="buildUrl();" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtURL">URL</label></td>
+                                <td><textarea id="txtURL" class="sg-textarea" rows="7"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script>
 
-        if (isInSession()) {
+        if (sessionStorage.getItem("accesstoken") != null) {
 
             document.getElementById("pnlIsLoggedOut").hidden = "hidden";
             document.getElementById("pnlIsLoggedIn").hidden = "";

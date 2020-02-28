@@ -153,7 +153,7 @@
                         <table width="100%">
                             <tr>
                                 <td width="25%"><label class="sg-label" for="txtAccessToken">access_token</label></td>
-                                <td width="75%"><textarea class="sg-textarea" rows="4" id="txtAccessToken"></textarea></td>
+                                <td width="75%"><textarea class="sg-textarea" rows="10" id="txtAccessToken"></textarea></td>
                             </tr>
                             <tr>
                                 <td><label class="sg-label" for="txtDecodedToken">Decoded Token</label></td>
@@ -273,7 +273,7 @@
                     var tokenType = JSON.parse(result).token_type;
 
                     document.getElementById("txtAccessToken").value = localtoken;
-                    sessionStorage.setItem("accesstoken") = localtoken;
+                    sessionStorage.setItem("accesstoken",localtoken);
 
                     var refreshtoken = JSON.parse(result).refresh_token;
 
