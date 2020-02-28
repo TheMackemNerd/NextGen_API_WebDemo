@@ -108,7 +108,7 @@
     <script>
 
         
-        if (isInSession()) {
+        if (sessionStorage.getItem("accesstoken") != null) {
 
             document.getElementById("pnlIsLoggedOut").hidden = "hidden";
             document.getElementById("pnlIsLoggedIn").hidden = "";
