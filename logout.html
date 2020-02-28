@@ -50,6 +50,8 @@
                 <div class="sg-panel">
                     <div class="sg-panel-contents-light">
                         <h1>Logged Out</h1>
+                        <br />
+                        <a class="sg-btn-primary" href="index.html">Login</a>
                     </div>
                 </div>
             </div>
@@ -83,6 +85,20 @@
                                 <td><label class="sg-label" for="txtURL">URL</label></td>
                                 <td><textarea id="txtURL" class="sg-textarea" rows="7"></textarea></td>
                             </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <button class="sg-btn-primary" id="btnLogout" onclick="doLogout();">Do Logout</button>
+                                    <br />
+                                    <div id="divAlert" hidden="hidden">
+                                        <span class="sg-notice" role="alert" id="spaTokenWarn"></span>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -111,6 +127,13 @@
 
             var str = document.getElementById("txtIdp").value + "/" + document.getElementById("txtPath").value + "?client_id=" + document.getElementById("txtClientId").value + "&logout_url=" + encodeURIComponent(document.getElementById("txtLogout").value);
             document.getElementById("txtURL").value = str;
+        }
+
+        function doLogout() {
+
+            sessionStorage.removeItem("accesstoken");
+            window.location.replace(document.getElementById("txtURL").value);
+
         }
 
 
