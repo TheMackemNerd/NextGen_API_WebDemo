@@ -40,7 +40,7 @@
                 <li class="sg-header-sections open-toggle">
                     <button type="button" class="sg-header-menu-button" aria-label="Open main menu"></button>
                     <ul>
-                        <li><a href="/logout.html">Logout</a></li>
+                        <li><a href="logout.html">Logout</a></li>
                     </ul>
                 </li>
 
@@ -160,6 +160,14 @@
                                 <td><textarea class="sg-textarea" rows="10" id="txtDecodedToken"></textarea></td>
                             </tr>
                             <tr>
+                                <td><label class="sg-label" for="txtExpires">Expires In</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" id="txtExpires" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtType">Token Type</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" id="txtType" /></td>
+                            </tr>
+                            <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -261,15 +269,19 @@
                     document.getElementById("tokenPanel").hidden = "";
                     // Extract the Access & Refresh tokens from the payload
                     var localtoken = JSON.parse(result).access_token;
+                    var expires = JSON.parse(result).expires_in;
+                    var tokenType = JSON.parse(result).token_type;
 
-                    document.getElementById("txtToken").value = localtoken;
-                    sessionStorage.getItem("token") = localtoken;
+                    document.getElementById("txtAccessToken").value = localtoken;
+                    sessionStorage.setItem("accesstoken") = localtoken;
 
                     var refreshtoken = JSON.parse(result).refresh_token;
 
                     // Convert the string into a JWT object
                     var JWT = decodeToken(localtoken);
                     document.getElementById("txtDecodedToken").value = JSON.stringify(JWT);
+                    document.getElementById("txtExpires").value = expires;
+                    document.getElementById("txtType").value = tokenType;
 
                     return true;
                 }

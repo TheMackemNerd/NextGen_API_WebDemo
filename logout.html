@@ -8,19 +8,108 @@
     <meta http-equiv='pragma' content='no-cache'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <script src="js/securecheck.js"></script>
-    <script>
-        try {
-            logOut();
-        }
-        catch (e) {
-            console.log("Error: " + e);
-        }  
-    </script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
 
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/guide.css?v=325">
+    <link rel="stylesheet" href="https://styleguide.ngiris.com/assets/css/iris-ui.css?v-234">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.browser.min.js"></script>
+
+    <!-- POC Scripts -->
+    <script src="js/securecheck.js"></script>
+    <script src="js/banner.js"></script>
+
+    <title>API and Authentication POC Client</title>
 </head>
 <body>
-    <p>Logging Out</p>
+
+    <a href="#main" class="sg-skip-to-content">Tap Enter to skip to main content</a>
+
+    <header class="sg-header">
+        <nav>
+            <ul>
+                <li class="sg-header-company">
+                    <a href="/" aria-label="Go to the homepage" title="Homepage">
+                        <img src="images/iris-logo-white.png" alt="IRIS">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <span class="sg-header-stripe"></span>
+    </header>
+
+    <div class="sg-panel-group" id="pnlIsLoggedOut" hidden="hidden">
+        <div class="sg-panel">
+            <div class="sg-panel-contents-light">
+                <h1>Logged Out</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="sg-panel-group" id="pnlIsLoggedIn">
+        <div class="sg-panel">
+            <div class="sg-panel-contents-light">
+                <h1>Logout</h1>
+                <table width="100%">
+                    <tr>
+                        <td width="25%"><label class="sg-label" for="txtIdp">Identity Provider</label></td>
+                        <td width="75%"><input type="text" class="sg-input sg-input-large" size="70" id="txtIdp" onchange="buildUrl();" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sg-label" for="txtPath">Logout Path</label></td>
+                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtPath" value="logout" onchange="buildUrl();" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sg-label" for="txtClientId">Client ID</label></td>
+                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtClientId" onchange="buildUrl();" /></td>
+                    </tr>
+                    <tr>
+                        <td><label class="sg-label" for="txtLogout">Logout URI</label></td>
+                        <td><input type="text" class="sg-input sg-input-large" size="70" id="txtLogout" onchange="buildUrl();" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><label class="sg-label" for="txtURL">URL</label></td>
+                        <td><textarea id="txtURL" class="sg-textarea" rows="7"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        if (isInSession()) {
+
+            document.getElementById("pnlIsLoggedOut").hidden = "hidden";
+            document.getElementById("pnlIsLoggedIn").hidden = "";
+            document.getElementById("txtIdp").value = sessionStorage.getItem("idp");
+            document.getElementById("txtClientId").value = sessionStorage.getItem("clientId");
+            document.getElementById("txtLogout").value = "https://ec2-34-255-217-86.eu-west-1.compute.amazonaws.com/logout.html";
+        }
+        else {
+            document.getElementById("pnlIsLoggedOut").hidden = "";
+            document.getElementById("pnlIsLoggedIn").hidden = "hidden";
+        }
+
+
+        function buildUrl() {
+
+            var str = document.getElementById("txtIdp").value + "/" + document.getElementById("txtPath").value + "?client_id=" + document.getElementById("txtClientId").value + "&logout_url=" + encodeURIComponent(document.getElementById("txtLogout").value);
+            document.getElementById("txtURL").value = str;
+        }
+
+
+
+    </script>
+
 </body>
 </html>
 

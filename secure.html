@@ -23,6 +23,10 @@
     <script src="js/securecheck.js"></script>
     <script src="js/banner.js"></script>
 
+    <script language="JavaScript" type="text/javascript"
+            src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js">
+    </script>
+
     <title>API and Authentication POC Client</title>
 </head>
 <body>
@@ -40,7 +44,7 @@
                 <li class="sg-header-sections open-toggle">
                     <button type="button" class="sg-header-menu-button" aria-label="Open main menu"></button>
                     <ul>
-                        <li><a href="/logout.html">Logout</a></li>
+                        <li><a href="logout.html">Logout</a></li>
                     </ul>
                 </li>
 
@@ -53,12 +57,86 @@
 
         <div class="content">
 
+            <div class="sg-panel-group" id="pnlIsLoggedOut" hidden="hidden">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Not Authorised!</h1>
+                        <br />
+                        <a class="sg-btn-primary" href="secure.html">Login</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-panel-group" id="pnlIsLoggedIn">
+                <div class="sg-panel">
+                    <div class="sg-panel-contents-light">
+                        <h1>Secure Resource</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtKeyPath">Key Path</label></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtKeyPath" value="https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_2DtCcoypN/.well-known/jwks.json" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <button class="sg-btn-primary" id="btnKeys" onclick="getKeys();">Get Keys</button>
+                                    <br />
+                                    <div id="divKeyAlert" hidden="hidden">
+                                        <span class="sg-notice" role="alert" id="spaKeyWarn"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtKeys">Keys</label></td>
+                                <td><textarea id="txtKeys" class="sg-textarea" rows="9"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
-
-
+</main>
 
     <script>
+
+        
+        if (isInSession()) {
+
+            document.getElementById("pnlIsLoggedOut").hidden = "hidden";
+            document.getElementById("pnlIsLoggedIn").hidden = "";
+        }
+        else {
+            document.getElementById("pnlIsLoggedOut").hidden = "";
+            document.getElementById("pnlIsLoggedIn").hidden = "hidden";
+        }
+        
+
+        function getKeys() {
+
+            callForKeys(function (result) {
+                document.getElementById("txtKeys").value = JSON.stringify(result);
+            });
+
+        }
+
+        async function callForKeys(callback) {
+            var request = new XMLHttpRequest();            
+            request.open('GET', document.getElementById("txtKeyPath").value);            
+            request.onload = function () {
+                alert("here");
+                var data = this.response;                
+                callback(data);
+            }
+            request.send();
+        }
 
     </script>
 
