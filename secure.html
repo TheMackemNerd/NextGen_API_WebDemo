@@ -77,6 +77,18 @@
                                 <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtKeyPath" value="https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_2DtCcoypN/.well-known/jwks.json" /></td>
                             </tr>
                             <tr>
+                                <td><label class="sg-label" for="txtAlg">Signature Alg</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="90" id="txtAlg" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtKid">Signature Kid</label></td>
+                                <td><input type="text" class="sg-input sg-input-large" size="90" id="txtKid" /></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtSig">Signature</label></td>
+                                <td><textarea id="txtSig" class="sg-textarea" rows="4"></textarea></td>
+                            </tr>
+                            <tr>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
@@ -107,11 +119,19 @@
 
     <script>
 
+
         
         if (sessionStorage.getItem("accesstoken") != null) {
 
             document.getElementById("pnlIsLoggedOut").hidden = "hidden";
             document.getElementById("pnlIsLoggedIn").hidden = "";
+
+            var accesstoken = sessionStorage.getItem("accesstoken");
+            var jwt = decodeToken(accesstoken);
+            document.getElementById("txtAlg").value = jwt.header.alg;
+            document.getElementById("txtKid").value = jwt.header.kid;
+            document.getElementById("txtSig").value = accesstoken.split('.')[2];
+
         }
         else {
             document.getElementById("pnlIsLoggedOut").hidden = "";
@@ -122,7 +142,7 @@
         function getKeys() {
 
             callForKeys(function (result) {
-                document.getElementById("txtKeys").value = JSON.stringify(result);
+                document.getElementById("txtKeys").value = result;
             });
 
         }
@@ -131,12 +151,13 @@
             var request = new XMLHttpRequest();            
             request.open('GET', document.getElementById("txtKeyPath").value);            
             request.onload = function () {
-                alert("here");
                 var data = this.response;                
                 callback(data);
             }
             request.send();
         }
+
+
 
     </script>
 

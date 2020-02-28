@@ -46,6 +46,7 @@
     <main class="sg-main" id="main">
 
         <div class="content">
+        <br/>
             <div class="sg-panel-group" id="pnlIsLoggedOut" hidden="hidden">
                 <div class="sg-panel">
                     <div class="sg-panel-contents-light">
@@ -92,7 +93,7 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td>
-                                    <button class="sg-btn-primary" id="btnLogout" onclick="doLogout();">Do Logout</button>
+                                    <button class="sg-btn-primary" id="btnLogout" onclick="doLogout();">Logout</button>
                                     <br />
                                     <div id="divAlert" hidden="hidden">
                                         <span class="sg-notice" role="alert" id="spaTokenWarn"></span>
@@ -125,7 +126,7 @@
 
         function buildUrl() {
 
-            var str = document.getElementById("txtIdp").value + "/" + document.getElementById("txtPath").value + "?client_id=" + document.getElementById("txtClientId").value + "&logout_url=" + encodeURIComponent(document.getElementById("txtLogout").value);
+            var str = document.getElementById("txtIdp").value + "/" + document.getElementById("txtPath").value + "?client_id=" + document.getElementById("txtClientId").value + "&logout_uri=" + encodeURIComponent(document.getElementById("txtLogout").value);
             document.getElementById("txtURL").value = str;
         }
 
