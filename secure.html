@@ -197,7 +197,7 @@
                 mode: 'cors',
                 headers: {
                     "Content-type": "application/json",
-                    "X-USER": decodeToken(accesstoken).sub
+                    "Authorization": accesstoken
                 }                 
               });
 
