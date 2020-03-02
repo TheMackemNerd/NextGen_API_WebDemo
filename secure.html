@@ -159,11 +159,12 @@
             fetch(req)
                 .then(function () {
                     if (req.status != 200) {
+                        console.log("error: " + req.error);
                         callback(req.error);
                     }
                     else {
-                        var data = req.response;
-                        console.log(data);
+                        var data = req.body;
+                        console.log("data: " + data);
                         callback(null, data);
                     }
                 });
