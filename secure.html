@@ -156,27 +156,29 @@
                 }                
               });
 
-            try {
-                await fetch(req)
-                    .then(function (response) {
+            fetch(req)
+                .then(function (response) {
                         
-                        console.log("Status: " + response.status);
-                        if (response.status != 200) {
-                            console.log("error: " + response.error);
-                            callback(response.error);
-                        }
-                        else {
-                            var data = response.text();
-                            console.log("data: " + data);
-                            callback(null, data);
-                        }
-                    });
-            }
-            catch (err) {
-                console.log("Fetch Error: " + err);
-                callback(err);
-            }
-
+                    console.log("Status: " + response.status);
+                    if (response.status != 200) {
+                        console.log("error: " + response.error);
+                        callback(response.error);
+                    }
+                    else {
+                        return response.text();
+                    }
+                })
+                .then(function (text) {
+                    console.log('Request successful', text);
+                    callback(null, data);
+                })
+ 
+                .catch(function (error) {
+                    console.log('Request failed', error);
+                    callback(error);
+                }
+            );
+                          
         }
 
 
