@@ -157,16 +157,16 @@
               });
 
             try {
-                fetch(req)
+                await fetch(req)
                     .then(function () {
                         
-                        console.log("Status: " + Response.status);
-                        if (Response.status != 200) {
-                            console.log("error: " + Response.error);
-                            callback(Response.error);
+                        console.log("Status: " + response.status);
+                        if (response.status != 200) {
+                            console.log("error: " + response.error);
+                            callback(response.error);
                         }
                         else {
-                            var data = Response.body;
+                            var data = response.body;
                             console.log("data: " + data);
                             callback(null, data);
                         }
