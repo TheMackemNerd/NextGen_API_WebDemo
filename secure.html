@@ -128,16 +128,6 @@
         function callAPI() {
 
             callAPIasync(function (error, item) {
-
-                if (error) {
-                    document.getElementById("txtStatus").value = "FAIL";
-                    document.getElementById("txtResponse").value = error;
-                }
-                else {
-                    document.getElementById("txtStatus").value = "SUCCESS";
-                    document.getElementById("txtResponse").value = item;
-                }
-
             });
         }
 
@@ -162,7 +152,8 @@
                     console.log("Status: " + response.status);
                     if (response.status != 200) {
                         console.log("error: " + response.error);
-                        callback(response.error);
+                        document.getElementById("txtStatus").value = "FAIL";
+                        document.getElementById("txtResponse").value = error;
                     }
                     else {
                         return response.text();
@@ -170,12 +161,14 @@
                 })
                 .then(function (text) {
                     console.log('Request successful', text);
-                    callback(null, data);
+                    document.getElementById("txtStatus").value = "SUCCESS";
+                    document.getElementById("txtResponse").value = item;
                 })
  
                 .catch(function (error) {
                     console.log('Request failed', error);
-                    callback(error);
+                    document.getElementById("txtStatus").value = "FAIL";
+                    document.getElementById("txtResponse").value = error;
                 }
             );
                           
