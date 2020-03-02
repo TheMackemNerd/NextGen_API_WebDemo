@@ -106,15 +106,19 @@
                     </div>
                 </div>
             </div>
-
-            <div class="sg-panel-group" id="pnlIsLoggedIn">
+            <br/>
+            <div class="sg-panel-group" id="pnlMFA">
                 <div class="sg-panel">
                     <div class="sg-panel-contents-light">
                         <h1>Multi-Factor Authentication</h1>
                         <table width="100%">
                             <tr>
                                 <td width="25%"><label class="sg-label" for="txtPhone">Phone Number</label></td>
-                                <td width="75%">+44<input type="text" class="sg-input sg-input-large" size="90" id="txtPhone" /></td>
+                                <td width="75%">+44&nbsp;&nbsp;<input type="text" class="sg-input sg-input-large" size="70" id="txtPhone" /></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -186,7 +190,7 @@
 
         async function callMFAasync(callback) {
 
-            var req = new Request("https://johnsauthdemo.irisws-development.co.uk/api/v1/users/me/mfa?phone_number=" + document.getElementById("txtPhone").value + "&mfa_enabled=" + (document.getElementById("chkMFA").checked == "checked") , {
+            var req = new Request("https://johnsauthdemo.irisws-development.co.uk/api/v1/users/me/mfa?phone_number=" + "44" + document.getElementById("txtPhone").value + "&mfa_enabled=" + (document.getElementById("chkMFA").checked == "checked") , {
                 method: 'put',
                 mode: 'cors'                
               });
