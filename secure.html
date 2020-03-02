@@ -158,6 +158,7 @@
 
             fetch(req)
                 .then(function () {
+                    console.log("Status: " + req.status);
                     if (req.status != 200) {
                         console.log("error: " + req.error);
                         callback(req.error);
