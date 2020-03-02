@@ -156,20 +156,26 @@
                 }                
               });
 
-            fetch(req)
-                .then(function () {
-                    console.log("Status: " + req.status);
-                    if (req.status != 200) {
-                        console.log("error: " + req.error);
-                        callback(req.error);
-                    }
-                    else {
-                        var data = req.body;
-                        console.log("data: " + data);
-                        callback(null, data);
-                    }
-                });
+            try {
+                fetch(req)
+                    .then(function () {
 
+                        console.log("Status: " + req.status);
+                        if (req.status != 200) {
+                            console.log("error: " + req.error);
+                            callback(req.error);
+                        }
+                        else {
+                            var data = req.body;
+                            console.log("data: " + data);
+                            callback(null, data);
+                        }
+                    });
+            }
+            catch (err) {
+                console.log("Fetch Error: " + err);
+                callback(err);
+            }
 
         }
 
