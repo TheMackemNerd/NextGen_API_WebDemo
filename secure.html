@@ -159,14 +159,14 @@
             try {
                 fetch(req)
                     .then(function () {
-
-                        console.log("Status: " + req.status);
-                        if (req.status != 200) {
-                            console.log("error: " + req.error);
-                            callback(req.error);
+                        
+                        console.log("Status: " + Response.status);
+                        if (Response.status != 200) {
+                            console.log("error: " + Response.error);
+                            callback(Response.error);
                         }
                         else {
-                            var data = req.body;
+                            var data = Response.body;
                             console.log("data: " + data);
                             callback(null, data);
                         }
