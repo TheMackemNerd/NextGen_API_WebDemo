@@ -74,7 +74,7 @@
                         <table width="100%">
                             <tr>
                                 <td width="25%"><label class="sg-label" for="txtAPI">Backend API</label></td>
-                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtAPI" value="https://ec2-34-254-224-164.eu-west-1.compute.amazonaws.com:3000/api/v1/helloworld" /></td>
+                                <td width="75%"><input type="text" class="sg-input sg-input-large" size="90" id="txtAPI" value="https://johnsauthdemo.irisws-development.co.uk/api/v1/helloworld" /></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -159,7 +159,7 @@
             fetch(req)
                 .then(function () {
                     if (req.status != 200) {
-                        callback(err);
+                        callback(req.error);
                     }
                     else {
                         var data = this.response;
