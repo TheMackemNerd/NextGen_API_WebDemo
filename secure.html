@@ -162,7 +162,8 @@
                         callback(req.error);
                     }
                     else {
-                        var data = this.response;
+                        var data = req.response;
+                        console.log(data);
                         callback(null, data);
                     }
                 });
