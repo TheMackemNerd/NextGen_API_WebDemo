@@ -190,9 +190,15 @@
 
         async function callMFAasync(callback) {
 
+            var accesstoken = sessionStorage.getItem("accesstoken");
+
             var req = new Request("https://johnsauthdemo.irisws-development.co.uk/api/v1/users/me/mfa?phone_number=" + "44" + document.getElementById("txtPhone").value + "&mfa_enabled=" + (document.getElementById("chkMFA").checked == "checked") , {
                 method: 'put',
-                //mode: 'cors'                
+                mode: 'cors',
+                headers: {
+                    "Content-type": "application/json",
+                    "X-USER": decodeToken(accesstoken).sub;
+                }                 
               });
 
             fetch(req)
