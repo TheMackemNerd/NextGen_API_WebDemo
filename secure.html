@@ -166,7 +166,7 @@
                             callback(response.error);
                         }
                         else {
-                            var data = response.body;
+                            var data = response.text();
                             console.log("data: " + data);
                             callback(null, data);
                         }
