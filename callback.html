@@ -285,7 +285,7 @@
                     var expires = JSON.parse(result).expires_in;
                     var tokenType = JSON.parse(result).token_type;
 
-                    document.getElementById("preDecodedIdToken").value = JSON.stringify(idtoken,null,2);
+                    document.getElementById("preDecodedIdToken").value = JSON.stringify(JSON.parse(idtoken),null,2);
 
                     document.getElementById("txtAccessToken").value = localtoken;
                     document.getElementById("txtIDToken").value = idtoken;
