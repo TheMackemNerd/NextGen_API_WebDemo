@@ -177,7 +177,7 @@
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><p class="sg-p"><pre id="preDecodedIdToken"></pre></p></td>
+                                <td><div><pre id="preDecodedIdToken"></pre></div></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -285,7 +285,7 @@
                     var expires = JSON.parse(result).expires_in;
                     var tokenType = JSON.parse(result).token_type;
 
-                    document.getElementById("preDecodedIdToken").value = JSON.stringify(JSON.parse(idtoken),null,2);
+                    document.getElementById("preDecodedIdToken").value = JSON.stringify(idtoken, null,'\t');
 
                     document.getElementById("txtAccessToken").value = localtoken;
                     document.getElementById("txtIDToken").value = idtoken;
