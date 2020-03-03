@@ -302,7 +302,7 @@
                     document.getElementById("txtExpires").value = expires;
                     document.getElementById("txtType").value = tokenType;
 
-                    document.getElementById("preDecodedIdToken").value = JSON.stringify(JWTID, null,'\t');
+                    document.getElementById("preDecodedIdToken").innerHTML = JSON.stringify(JWTID, null,2);
 
                     return true;
                 }
