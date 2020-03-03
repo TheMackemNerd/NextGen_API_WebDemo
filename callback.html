@@ -296,7 +296,7 @@
 
                     // Convert the string into a JWT object
                     var JWT = decodeToken(localtoken);
-                    document.getElementById("txtDecodedToken").value = JSON.stringify(JWT);
+                    document.getElementById("txtDecodedToken").value = JSON.stringify(JWT,null,2);
                     var JWTID = decodeToken(idtoken);
                     //document.getElementById("txtDecodedIDToken").value = JSON.stringify(JWTID);
                     document.getElementById("txtExpires").value = expires;
