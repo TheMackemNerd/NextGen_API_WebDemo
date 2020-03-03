@@ -133,6 +133,8 @@
         function doLogout() {
 
             sessionStorage.removeItem("accesstoken");
+            sessionStorage.removeItem("idtoken");
+
             window.location.replace(document.getElementById("txtURL").value);
 
         }

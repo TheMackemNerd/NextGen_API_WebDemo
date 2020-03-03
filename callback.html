@@ -156,7 +156,7 @@
                                 <td width="75%"><textarea class="sg-textarea" rows="14" disabled="disabled" id="txtAccessToken"></textarea></td>
                             </tr>
                             <tr>
-                                <td><label class="sg-label" for="txtDecodedToken">Decoded Token</label></td>
+                                <td><label class="sg-label" for="txtDecodedToken">Decoded Access Token</label></td>
                                 <td><textarea class="sg-textarea" rows="7" disabled="disabled" id="txtDecodedToken"></textarea></td>
                             </tr>
                             <tr>
@@ -166,6 +166,14 @@
                             <tr>
                                 <td><label class="sg-label" for="txtType">Token Type</label></td>
                                 <td><input type="text" class="sg-input sg-input-large" disabled="disabled" id="txtType" /></td>
+                            </tr>
+                            <tr>
+                                <td width="25%"><label class="sg-label" for="txtIDToken">id_token</label></td>
+                                <td width="75%"><textarea class="sg-textarea" rows="14" disabled="disabled" id="txtIDToken"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><label class="sg-label" for="txtDecodedIDToken">Decoded ID Token</label></td>
+                                <td><textarea class="sg-textarea" rows="7" disabled="disabled" id="txtDecodedIDToken"></textarea></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -269,17 +277,23 @@
                     document.getElementById("tokenPanel").hidden = "";
                     // Extract the Access & Refresh tokens from the payload
                     var localtoken = JSON.parse(result).access_token;
+                    var idtoken = JSON.parse(result).id_token;
                     var expires = JSON.parse(result).expires_in;
                     var tokenType = JSON.parse(result).token_type;
 
                     document.getElementById("txtAccessToken").value = localtoken;
-                    sessionStorage.setItem("accesstoken",localtoken);
+                    document.getElementById("txtIDToken").value = idtoken;
+                    sessionStorage.setItem("accesstoken", localtoken);
+                    sessionStorage.setItem("idtoken", idtoken);
+
 
                     var refreshtoken = JSON.parse(result).refresh_token;
 
                     // Convert the string into a JWT object
                     var JWT = decodeToken(localtoken);
                     document.getElementById("txtDecodedToken").value = JSON.stringify(JWT);
+                    var JWTID = decodeToken(idtoken);
+                    document.getElementById("txtDecodedIDToken").value = JSON.stringify(JWTID);
                     document.getElementById("txtExpires").value = expires;
                     document.getElementById("txtType").value = tokenType;
 
