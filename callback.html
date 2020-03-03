@@ -176,8 +176,8 @@
                                 <td width="75%"><textarea class="sg-textarea" rows="14" disabled="disabled" id="txtIDToken"></textarea></td>
                             </tr>
                             <tr>
-                                <td><label class="sg-label" for="txtDecodedIDToken">Decoded ID Token</label></td>
-                                <td><textarea class="sg-textarea" rows="12" disabled="disabled" id="txtDecodedIDToken"></textarea></td>
+                                <td>&nbsp;</td>
+                                <td><p class="sg-p"><pre id="preDecodedIdToken"></pre></p></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -284,6 +284,8 @@
                     var idtoken = JSON.parse(result).id_token;
                     var expires = JSON.parse(result).expires_in;
                     var tokenType = JSON.parse(result).token_type;
+
+                    document.getElementById("preDecodedIdToken").value = JSON.stringify(idtoken,null,2);
 
                     document.getElementById("txtAccessToken").value = localtoken;
                     document.getElementById("txtIDToken").value = idtoken;
