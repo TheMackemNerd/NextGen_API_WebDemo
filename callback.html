@@ -285,7 +285,6 @@
                     var expires = JSON.parse(result).expires_in;
                     var tokenType = JSON.parse(result).token_type;
 
-                    document.getElementById("preDecodedIdToken").value = JSON.stringify(idtoken, null,'\t');
 
                     document.getElementById("txtAccessToken").value = localtoken;
                     document.getElementById("txtIDToken").value = idtoken;
@@ -302,6 +301,8 @@
                     document.getElementById("txtDecodedIDToken").value = JSON.stringify(JWTID);
                     document.getElementById("txtExpires").value = expires;
                     document.getElementById("txtType").value = tokenType;
+
+                    document.getElementById("preDecodedIdToken").value = JSON.stringify(JWTID, null,'\t');
 
                     return true;
                 }
