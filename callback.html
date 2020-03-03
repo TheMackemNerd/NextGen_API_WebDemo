@@ -286,8 +286,8 @@
                     var tokenType = JSON.parse(result).token_type;
 
 
-                    document.getElementById("txtAccessToken").value = localtoken;
-                    document.getElementById("txtIDToken").value = idtoken;
+                    document.getElementById("txtAccessToken").innerHTML = localtoken;
+                    document.getElementById("txtIDToken").innerHTML = idtoken;
                     sessionStorage.setItem("accesstoken", localtoken);
                     sessionStorage.setItem("idtoken", idtoken);
 
@@ -296,7 +296,7 @@
 
                     // Convert the string into a JWT object
                     var JWT = decodeToken(localtoken);
-                    document.getElementById("txtDecodedToken").value = JSON.stringify(JWT,null,2);
+                    document.getElementById("txtDecodedToken").innerHTML = JSON.stringify(JWT,null,2);
                     var JWTID = decodeToken(idtoken);
                     //document.getElementById("txtDecodedIDToken").value = JSON.stringify(JWTID);
                     document.getElementById("txtExpires").value = expires;
